@@ -1,74 +1,18 @@
 {
-  "name": "@iiif/3d-manifesto-dev",
-  "version": "0.7.0",
+  "name": "@kshell/manifesto-prezi4",
+  "version": "1.0.0",
   "description": "IIIF Presentation API utility library for client and server with 3D extension",
-  "main": "./dist-commonjs/index.js",
-  "module": "./dist-esmodule/index.js",
+
   "scripts": {
-    "build:commonjs": "tsc",
-    "docs": "rimraf -rf docs && typedoc --tsconfig tsconfig.docs.json --out docs --name manifesto --theme default src/",
-    "build:esmodule": "tsc -m es6 --outDir dist-esmodule",
-    "build:types": "dts-bundle-generator --umd-module-name manifesto -o types/index.d.ts dist-esmodule/index.d.ts",
-    "build:umd": "webpack",
-    "build:var": "cross-env NODE_WEBPACK_LIBRARY_PATH=dist-var NODE_WEBPACK_LIBRARY_TARGET=var webpack",
-    "build": "npm run clean && npm run build:commonjs && npm run build:esmodule && npm run build:umd && npm run build:var && npm run build:types",
-    "clean": "rimraf -rf dist-umd  dist-var types",
-    "lint:all": "prettier --write \"./src/**/*.{js,jsx,json,css,ts,tsx}\"",
-    "prepublishOnly": "npm run build && npm run test",
+    "build": "tsc",
     "test": "mocha",
-    "watch": "npm run build:esmodule -- --watch"
-  },
-  "engines": {
-    "node": ">=8.9.1",
-    "npm": ">=3.10.8"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/IIIF-Commons/manifesto-3d.git"
   },
   "keywords": [
     "IIIF"
   ],
-  "author": "@edsilv",
+  "author": "Vincent Marchetti",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/iiif-commons/manifesto/issues"
-  },
-  "homepage": "https://github.com/iiif-commons/manifesto",
-  "devDependencies": {
-    "@types/node": "24.0.10",
-    "chai": "5.2.0",
-    "cross-env": "^7.0.3",
-    "dts-bundle-generator": "^9.5.1",
-    "eslint": "9.27.0",
-    "eslint-config-prettier": "10.1.5",
-    "eslint-plugin-prettier": "5.4.0",
-    "finalhandler": "2.1.0",
-    "http": "0.0.0",
-    "mocha": "^11.7.1",
-    "prettier": "^3.6.2",
-    "rimraf": "^6.0.1",
-    "serve-static": "^2.2.0",
-    "ts-loader": "^9",
-    "typedoc": "^0.28.7",
-    "typescript": "^5",
-    "typescript-eslint": "8.32.1",
-    "webpack": "^5.99.9",
-    "webpack-cli": "^6.0.1",
-    "yargs": "18.0.0"
-  },
-  "dependencies": {
-    "@edsilv/http-status-codes": "^1.0.3",
-    "@iiif/vocabulary": "^1.0.28",
-    "isomorphic-unfetch": "^3.0.0",
-    "lodash": "^4.17.21",
-    "color-string": "1.9",
-    "threejs-math": "^0.147"
-  },
   "directories": {
     "test": "test"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
