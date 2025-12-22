@@ -3,7 +3,6 @@
         "allowSyntheticDefaultImports": true,
         "declaration": true,
         "forceConsistentCasingInFileNames": true,
-        "jsx": "react",
         "lib": [ "es2017", "dom" ],
         "module": "commonjs",
         "moduleResolution": "node",
@@ -12,14 +11,14 @@
         "noImplicitThis": true,
         "noUnusedLocals": true,
         "noUnusedParameters": false,
-        "outDir": "dist-commonjs",
+        "outDir": "dist",
         "skipLibCheck": true,
         "sourceMap": true,
         "esModuleInterop": true,
         "strictNullChecks": true,
-        "target": "es5"
+        "target": "es6"
     },
     "include": [
-        "src/**/*"
+        "src/index.ts"
     ]
 }
