@@ -2,7 +2,7 @@
 
 
 
-
+This repo was copied from IIIF-Commons/manifesto at commit 127227df (18 Jul 2025)
 
 ### synchronize with IIIF-Commons/manifesto-3d
 ```
