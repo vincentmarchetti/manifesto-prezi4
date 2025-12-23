@@ -17,13 +17,17 @@
   "devDependencies": {
     "@types/node": "^25.0.3",
     "chai": "^6.2.2",
+    "finalhandler": "^2.1.1",
+    "isomorphic-unfetch": "^4.0.2",
     "mocha": "^11.7.5",
+    "serve-static": "^2.2.1",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "@edsilv/http-status-codes": "^1.0.3",
     "@iiif/vocabulary": "^1.0.31",
-    "color-string": "^2.1.4",
+    "color-string": "1.9",
+    "lodash": "^4.17.21",
     "threejs-math": "^0.147.0"
   }
 }
