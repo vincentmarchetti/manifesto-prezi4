@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 var should = require('chai').should();
-var manifesto = require('../../dist/');
+var manifesto = require('../../dist-commonjs/');
 var manifests = require('../fixtures/manifests');
 var AnnotationMotivation = require('@iiif/vocabulary/dist-commonjs/').AnnotationMotivation;
 var ExternalResourceType = require('@iiif/vocabulary/dist-commonjs/').ExternalResourceType;

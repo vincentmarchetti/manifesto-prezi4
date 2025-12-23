@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 var should = require('chai').should();
-var manifesto = require('../../../dist/');
+var manifesto = require('../../../dist-commonjs/');
 
 
 describe('class-color', function() {
