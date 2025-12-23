@@ -1,7 +1,7 @@
 // root service is string (only references to root services may be strings)
 
 var expect = require('chai').expect;
-var manifesto = require('../../dist-commonjs/');
+var manifesto = require('../../dist/');
 var should = require('chai').should();
 var manifests = require('../fixtures/manifests');
 require('./shared');

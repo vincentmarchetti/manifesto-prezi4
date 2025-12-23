@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var manifesto = require('../../dist-commonjs/');
+var manifesto = require('../../dist/');
 var manifests = require('../fixtures/manifests');
 
 var manifest;
