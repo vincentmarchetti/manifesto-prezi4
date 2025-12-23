@@ -1,8 +1,0 @@
-.*
-**/tsconfig.json
-**/webpack.config.js
-node_modules
-src
-mocha_3d_tests.js
-test
-pkg-tests
