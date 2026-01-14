@@ -89,4 +89,16 @@ export class Scene extends ManifestResource {
       (annotation) => new Annotation(annotation, this.options)
     );
   }
+  
+  get annotationPages():AnnotationPage[]{
+    const items = this.__jsonld.items || this.__jsonld.content;
+    if (items === undefined ) return [];
+    
+    if (!Array.isArray(items))
+        throw new Error("manifesto.Scene.annotationPages : json content not an array");
+       
+    return items.map( (item) => {
+        return new AnnotationPage(item, this.options);
+    });    
+  }
 }
