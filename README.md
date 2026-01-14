@@ -16,6 +16,3 @@ From github.com:IIIF-Commons/manifesto-3d
 branch 'master' set up to track 'iiif-remote/master'.
 Switched to a new branch 'master'
 ```
-
-
-
