@@ -4,7 +4,8 @@
   "description": "IIIF Presentation API utility library for client and server with 3D extension",
   "scripts": {
     "build": "tsc",
-    "test": "mocha"
+    "test": "mocha",
+    "docs": "typedoc"
   },
   "keywords": [
     "IIIF"
@@ -21,7 +22,8 @@
     "isomorphic-unfetch": "^4.0.2",
     "mocha": "^11.7.5",
     "serve-static": "^2.2.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typedoc": "^0.28.16"
   },
   "dependencies": {
     "@edsilv/http-status-codes": "^1.0.3",
