@@ -1,11 +1,6 @@
 package-lock.json
-coverage
-npm-debug.log
+docs
 node_modules
 dist
-debug.log
-dist-commonjs
-dist-esmodule
-dist-umd
-dist-var
+dist-*
 types
