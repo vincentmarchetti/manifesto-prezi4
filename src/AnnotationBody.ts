@@ -31,7 +31,7 @@ export class AnnotationBody extends ManifestResource {
 
   // Get resource URI ID from either body (for content resource) or source (for specific resource)
   getResourceID(): string | null {
-    if (this.isSpecificResource()) {
+    if (this.isSpecificResource) {
       const source = this.getSource();
       if (source instanceof AnnotationBody) {
         return source.id;
@@ -73,16 +73,9 @@ export class AnnotationBody extends ManifestResource {
     return this.getProperty("height");
   }
 
-  getTransform(): Transform[] | null {
-    const transform = this.getProperty("transform");
-
-    if (transform) {
-      return this.getProperty("transform").map((transform) => {
-        return TransformParser.BuildFromJson(transform);
-      });
-    }
-
-    return null;
+  getTransform(): Transform[]  {
+    const json_items = this.getProperty("transform") ?? [];
+    return json_items.map((item) => TransformParser.BuildFromJson(item));
   }
 
   getTransformMatrix(): Matrix4 | null {
@@ -108,7 +101,7 @@ export class AnnotationBody extends ManifestResource {
   // Some properties may be on this object or (for SpecificResource) in source object
   getPropertyFromSelfOrSource(prop): any {
     if (
-      this.isSpecificResource() &&
+      this.isSpecificResource &&
       this.getSource() instanceof AnnotationBody
     ) {
       return (this.getSource() as AnnotationBody).getProperty(prop);
@@ -120,7 +113,7 @@ export class AnnotationBody extends ManifestResource {
   // Some labels may be on this object or (for SpecificResource) in source object
   getLabelFromSelfOrSource(): any {
     if (
-      this.isSpecificResource() &&
+      this.isSpecificResource &&
       this.getSource() instanceof AnnotationBody
     ) {
       return (this.getSource() as AnnotationBody).getLabel();
@@ -156,7 +149,7 @@ export class AnnotationBody extends ManifestResource {
     return this.getType() === ExternalResourceType.TEXT && this.getProperty("format").toLowerCase() === "text/vtt";
   }
   
-  isSpecificResource(): boolean {
+  get isSpecificResource(): boolean {
     return this.getProperty("type") === "SpecificResource";
   }
 }
