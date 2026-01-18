@@ -40,7 +40,7 @@ describe('positioned_camera_lookat_anno', function() {
         var camera_anno = annotations[1];
         let camera  = camera_anno.getBody()[0];
                         
-        expect(camera.isSpecificResource()).to.equal(false);
+        expect(camera.isSpecificResource).to.equal(false);
         expect(camera instanceof manifesto.Camera).to.equal(true);
         expect(camera.isPerspectiveCamera()).to.equal(true);
         expect(camera.isModel()).to.equal(false,"checking isModel()=false");

@@ -56,7 +56,7 @@ describe('model_origin', function() {
         body = annotation.getBody()[0];
         expect( body.isModel() ).to.equal(true);
         expect(Array.isArray(body)).to.equal(false);
-        expect(body.isSpecificResource()).to.equal(false);
+        expect(body.isSpecificResource).to.equal(false);
         body.getType().should.equal(ExternalResourceType.MODEL);
     });
     
@@ -71,7 +71,7 @@ describe('model_origin', function() {
 
     it('and body has no transforms', function(){        
         body = annotation.getBody()[0];
-        expect(body.getTransform()).to.not.exist;
+        expect(body.getTransform()).to.have.lengthOf(0);
     });
 
     it('body id looks like a model url', function(){        

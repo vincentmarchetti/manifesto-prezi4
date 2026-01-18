@@ -37,10 +37,10 @@ describe('test SpecificResource without transform property', function() {
     it('annotation[3] has body SpecificResource with no transform', function(){
         let body = annotations[3].getBody()[0];
         expect(body).to.exist;
-        expect(body.isSpecificResource()).to.equal(true);
+        expect(body.isSpecificResource).to.equal(true);
         
         let transform = body.getTransform();
-        expect(transform).to.equal(null);
+        expect(transform).to.have.lengthOf(0);
     });      
 
         

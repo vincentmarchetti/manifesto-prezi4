@@ -42,7 +42,7 @@ describe('orthographic_camera_lookat_point', function() {
         var camera_anno = annotations[1];
         let camera = camera_anno.getBody()[0];
                         
-        expect(camera.isSpecificResource()).to.equal(false);
+        expect(camera.isSpecificResource).to.equal(false);
         expect(camera instanceof manifesto.Camera).to.equal(true);
         expect(camera.isPerspectiveCamera()).to.not.be.ok;
         expect(camera.isOrthographicCamera()).to.be.ok;

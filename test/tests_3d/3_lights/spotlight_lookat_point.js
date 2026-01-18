@@ -44,7 +44,7 @@ describe('spotlight', function() {
         
         expect(lightAnno).to.exist;
         let body = lightAnno.Body[0];
-        let light = (body.isSpecificResource())? body.Source : body;
+        let light = (body.isSpecificResource)? body.Source : body;
         expect (light.isSpotLight()).to.equal(true);
         
         expect( light.Intensity).to.equal( 0.6 );
