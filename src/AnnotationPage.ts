@@ -5,7 +5,20 @@ export class AnnotationPage extends ManifestResource {
     super(jsonld, options);
   }
 
-  getItems(): Annotation[] {
+  getItems(): any[] {
     return this.getProperty("items");
+  }
+  
+  getAnnotations():Annotation[] {
+    const items:any[] = this.getProperty("items") ?? [];
+    return items.reduce( (accum, item:any) => {
+        const item_type = item["type"] ?? "";
+        if (item_type === "Annotation")
+            accum.push( new Annotation(item, this.options));
+        else
+            console.warn("AnnotationPage.getAnnotations unrecognized item_type ${item_type}");
+        return accum;
+    },
+    []);
   }
 }
