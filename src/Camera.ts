@@ -16,7 +16,7 @@ export class Camera extends AnnotationBody {
   Angular unit is degrees
   **/
   getFieldOfView(): number | undefined {
-    if (this.isPerspectiveCamera()) {
+    if (this.isPerspectiveCamera ) {
       var value = this.getPropertyFromSelfOrSource("fieldOfView");
       if (value) {
         if (value > 0 && value < 180) return value;
@@ -46,7 +46,7 @@ export class Camera extends AnnotationBody {
   See issues at https://github.com/IIIF/api/issues/2289
   **/
   getViewHeight(): number | undefined {
-    if (this.isOrthographicCamera()) {
+    if (this.isOrthographicCamera ) {
       // the term viewHeight for the resource Type was suggested
       // in https://github.com/IIIF/api/issues/2289#issuecomment-2161608587
       var value = this.getProperty("viewHeight");
@@ -116,11 +116,15 @@ export class Camera extends AnnotationBody {
     return this.getFar();
   }
 
-  isPerspectiveCamera(): boolean {
+  get isPerspectiveCamera(): boolean {
     return Utils.normaliseType(this.getType() || "") === "perspectivecamera";
   }
 
-  isOrthographicCamera(): boolean {
+  get isOrthographicCamera(): boolean {
     return Utils.normaliseType(this.getType() || "") === "orthographiccamera";
+  }
+  
+  get isCamera(): boolean{
+    return this.isPerspectiveCamera || this.isOrthographicCamera ;
   }
 }
