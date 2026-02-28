@@ -44,8 +44,8 @@ describe('orthographic_camera_lookat_point', function() {
                         
         expect(camera.isSpecificResource).to.equal(false);
         expect(camera instanceof manifesto.Camera).to.equal(true);
-        expect(camera.isPerspectiveCamera()).to.not.be.ok;
-        expect(camera.isOrthographicCamera()).to.be.ok;
+        expect(camera.isPerspectiveCamera).to.not.be.ok;
+        expect(camera.isOrthographicCamera).to.be.ok;
         expect(camera.isModel()).to.equal(false,"checking isModel()=false");
         expect(camera.ViewHeight).to.equal(3.5);
         

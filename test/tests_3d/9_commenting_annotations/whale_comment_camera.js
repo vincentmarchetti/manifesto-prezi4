@@ -53,7 +53,7 @@ describe('c_comment_annotation_camera', function() {
         expect(camera).to.exist;
                       
         expect(camera instanceof manifesto.Camera).to.equal(true);
-        expect(camera.isPerspectiveCamera()).to.equal(true);        
+        expect(camera.isPerspectiveCamera).to.equal(true);        
     });
     
     it('camera has null LookAt property', function(){

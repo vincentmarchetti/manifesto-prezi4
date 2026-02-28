@@ -44,7 +44,7 @@ describe('positioned_camera_lookat_specific_resource', function() {
                         
         expect(camera.isSpecificResource).to.equal(false);
         expect(camera instanceof manifesto.Camera).to.equal(true);
-        expect(camera.isPerspectiveCamera()).to.equal(true);
+        expect(camera.isPerspectiveCamera).to.equal(true);
         expect(camera.isModel()).to.equal(false,"checking isModel()=false");
         
         

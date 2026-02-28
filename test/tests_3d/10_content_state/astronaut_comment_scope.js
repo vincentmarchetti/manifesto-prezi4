@@ -96,7 +96,7 @@ describe('astronaut_comment_scope', function() {
       const body = annotation.getBody()[0];
       expect(body.isSpecificResource).to.equal(false);
       expect(body instanceof manifesto.Camera).to.equal(true);
-      expect(body.isPerspectiveCamera()).to.equal(true);
+      expect(body.isPerspectiveCamera).to.equal(true);
 
       const target = annotation.getTarget();
       expect(target.isSpecificResource);
