@@ -3,7 +3,7 @@
         "allowSyntheticDefaultImports": true,
         "declaration": true,
         "forceConsistentCasingInFileNames": true,
-        "lib": [ "es2017", "dom" ],
+        "lib": [ "es2022", "dom" ],
         "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": false,
