@@ -99,14 +99,14 @@ export class SpecificResource extends ManifestResource {
         // an object but not null and not an array ( see 
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
 
-        if (! (typeof sv === 'object') && sv !== null && !Array.isArray(sv)){
+        if (! (typeof sv === 'object') && sv != null && !Array.isArray(sv)){
             const msg = `SpecificResource.Selector: invalid raw value ${sv}`;
             throw new Error(msg);
         }
         return sv as object;
     })(propValue);
     
-    if (raw === null) return null;
+    if (raw == null) return null;
     
     const visibleType = raw["type"];
     if (visibleType === "PointSelector")
@@ -121,8 +121,14 @@ export class SpecificResource extends ManifestResource {
     return this.getSelector();
   }
 
+
+  
   getTransform(): Transform[] {
-    var transformItems : unknown = this.getProperty("transform") ?? [];
+    console.debug( "inside getTransform() ");
+    var transformItems : unknown = this.getProperty("transform");
+    if (transformList == null) return ([] as Transform[]);
+    
+     
     if (!Array.isArray(transformItems)){
         throw new Error("SpecificResource.getTransform: manifest transform property not an array");
     }
@@ -130,7 +136,7 @@ export class SpecificResource extends ManifestResource {
     return transformItems.map( (transformItem:unknown, index:number ):Transform => {
     
         try{
-            if (!( typeof transformItem == 'object' && !Array.isArray(transformItem) && transformItem !== null))
+            if (!( typeof transformItem == 'object' && !Array.isArray(transformItem) && transformItem != null))
                 throw new Error(` invalid json data`);
             return TransformParser.BuildFromJson(transformItem as object);
         }
@@ -140,8 +146,11 @@ export class SpecificResource extends ManifestResource {
         }
     });
   }
-
+  
   get Transform(): Transform[] {
     return this.getTransform();
   }
+
+
+
 }
