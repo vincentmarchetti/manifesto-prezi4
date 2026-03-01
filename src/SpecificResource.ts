@@ -81,32 +81,64 @@ export class SpecificResource extends ManifestResource {
   }
 
   getSelector(): PointSelector | null {
-    const raw = this.getProperty("selector");
-    if (raw) {
-      var item = [].concat(raw)[0];
+    const propValue:unknown = this.getProperty("selector");
 
-      if (item) {
-        if (item["type"] === "PointSelector") return new PointSelector(item);
-      }
-      throw new Error(
-        "unable to resolve SpecificResource selector " +
-          JSON.stringify(this.__jsonld)
-      );
+    const raw : object | null = ( (pv:unknown):object|null => {
+        // also will not be an Array
+        // if passed a an Array will return the first item in Array as return value
+        let sv = pv;    // this will be converted to singleton if nec.
+        if (Array.isArray(pv)){
+            const ln = pv.length;
+            if (ln == 0) return null;
+            if (ln > 1)
+                console.warn("multiple resources in SpecificResource.Selector");
+            sv = pv[0];
+        }
+        // Dev note 20260301 : code inside the negation is the 
+        // practical Javascript runtime test that something (e.g. sv ) is
+        // an object but not null and not an array ( see 
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
+
+        if (! (typeof sv === 'object') && sv !== null && !Array.isArray(sv)){
+            const msg = `SpecificResource.Selector: invalid raw value ${sv}`;
+            throw new Error(msg);
+        }
+        return sv as object;
+    })(propValue);
+    
+    if (raw === null) return null;
+    
+    const visibleType = raw["type"];
+    if (visibleType === "PointSelector")
+        return new PointSelector(raw as object);
+    else{
+        const msg = `SpecificResource.Selector invalid type: ${visibleType}`;
+        throw new Error(msg);
     }
-    return null;
   }
+  
   get Selector(): PointSelector | null {
     return this.getSelector();
   }
 
   getTransform(): Transform[] {
-    var retVal: Transform[] = [];
-    var transformItems = this.getProperty("transform");
-    for (var i = 0; i < transformItems.length; ++i) {
-      var transformItem = transformItems[i];
-      retVal.push(TransformParser.BuildFromJson(transformItem));
+    var transformItems : unknown = this.getProperty("transform") ?? [];
+    if (!Array.isArray(transformItems)){
+        throw new Error("SpecificResource.getTransform: manifest transform property not an array");
     }
-    return retVal;
+    
+    return transformItems.map( (transformItem:unknown, index:number ):Transform => {
+    
+        try{
+            if (!( typeof transformItem == 'object' && !Array.isArray(transformItem) && transformItem !== null))
+                throw new Error(` invalid json data`);
+            return TransformParser.BuildFromJson(transformItem as object);
+        }
+        catch (error){
+            const msg = 'SpecificResource.Transform invalid element at index ${index} : ${error}';
+            throw new Error(msg);
+        }
+    });
   }
 
   get Transform(): Transform[] {
