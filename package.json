@@ -29,7 +29,6 @@
     "@edsilv/http-status-codes": "^1.0.3",
     "@iiif/vocabulary": "^1.0.31",
     "color-string": "1.9",
-    "lodash": "^4.17.21",
-    "threejs-math": "^0.147.0"
+    "lodash": "^4.17.21"
   }
 }
