@@ -7,7 +7,7 @@ export * from "./SpecificResource";
 //export * from "./SpecificResourceForTarget";
 //export * from "./SpecificResourceForBody";
 
-export * from "./AnnotationBody";
+//export * from "./AnnotationBody";
 export * from "./Light";
 export * from "./Camera";
 export * from "./TextualBody";
@@ -32,6 +32,7 @@ export * from "./LanguageMap";
 export * from "./PropertyValue";
 export * from "./Manifest";
 export * from "./ManifestType";
+export * from "./Model";
 export * from "./PointSelector";
 export * from "./Range";
 export * from "./Rendering";

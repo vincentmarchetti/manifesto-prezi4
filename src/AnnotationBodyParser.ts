@@ -1,46 +1,40 @@
 import {
-  AnnotationBody,
   IManifestoOptions,
   Light,
   Camera,
+  Model,
+  SpecificResource,
   IResource,
-  ResourceOps
-  
+  ManifestResource,
+  ResourceOps  
 } from "./internal";
 
-// Todo: Add these to @iiif/vocabulary
-const LightTypes: string[] = [
-  "AmbientLight",
-  "DirectionalLight",
-  "PointLight",
-  "SpotLight",
-];
-const CameraTypes: string[] = ["PerspectiveCamera", "OrthographicCamera"];
-const DisplayedTypes: string[] = [
-  "Image",
-  "Document",
-  "Audio",
-  "Model",
-  "Video",
-  "Canvas",
-  "Sound",
-  "Text"
-];
+
+const BodyCtorDict = {
+    "Model"             : Model,
+    "AmbientLight"      : Light,
+    "DirectionalLight"  : Light,
+    "PointLight"        : Light,
+    "SpotLight"         : Light,
+    "PerspectiveCamera" : Camera,
+    "OrthgraphicCanera" : Camera,
+    "SpecificResource"  : SpecificResource
+};
+
 
 export class AnnotationBodyParser {
-  static BuildFromJson(jsonld: unknown , options?: IManifestoOptions): object {
+  static BuildFromJson(jsonld: unknown , options?: IManifestoOptions): ManifestResource {
   
-    const res : IResource = ResourceOps.coerce_to_resource(jsonld);
-    
-    const BodyCtor = ((tp:string):any => {
-        if (tp === "SpecificResource") return SpecificResource;
-        if (tp === "Model" )           return Model;
-        if (LightTypes.includes(type)) return Light;
-        if (CameraTypes.includes(type)) return new Camera;
-        const msg = `AnnotationBodyParser.BuildFromJson unrecognized type ${tp}`;
+    const res  = ResourceOps.coerce_to_resource(jsonld);
+    if (res === null)
+        throw new Error(`AnnotationBodyParser,BuildFromJson invalid value`);
+        
+    const BodyCtor = BodyCtorDict[(res as IResource).type];
+    if (BodyCtor === undefined){
+        const msg = `AnnotationBodyParser.BuildFromJson unrecognized type ${res.type}`;
         throw new Error(msg);
-    })(res.type);
+    }
     
-    return new BodyCtor(res, options);     
+    return new BodyCtor(res, options) as ManifestResource;     
   }
 }

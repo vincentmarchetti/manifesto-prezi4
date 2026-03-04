@@ -1,6 +1,5 @@
 import { AnnotationMotivation } from "@iiif/vocabulary/dist-commonjs";
 import {
-  AnnotationBody,
   AnnotationBodyParser,
   AnnotationPage,
   IManifestoOptions,
@@ -23,8 +22,8 @@ export class Annotation extends ManifestResource {
   
   @see{ https://iiif.io/api/cookbook/recipe/0033-choice/ }
   **/
-  getBody(): AnnotationBody[] {
-    let bodies: AnnotationBody[] = [];
+  getBody(): ManifestResource[] {
+    let bodies: ManifestResource[] = [];
 
     /*
     A bodyValue property in the annotation json will short circuit
@@ -77,8 +76,8 @@ export class Annotation extends ManifestResource {
   which is a array of annotation- body-like objects. This : https://iiif.io/api/cookbook/recipe/0033-choice/
   seems to be the use case for this
   **/
-  private parseBodiesFromItemsList(rawbodies: any): AnnotationBody[] {
-    let retVal: AnnotationBody[] = [];
+  private parseBodiesFromItemsList(rawbodies: any): ManifestResource[] {
+    let retVal: ManifestResource[] = [];
     for (var bd of [].concat(rawbodies)) {
       retVal.push(this.parseSingletonBody(bd));
     }
@@ -89,7 +88,7 @@ export class Annotation extends ManifestResource {
   auxiliary function to parseBodiesFromItemsList and getBody, this is the last
   step on recursively going through collections of bodies.
   **/
-  private parseSingletonBody(rawbody: any): AnnotationBody {
+  private parseSingletonBody(rawbody: any): ManifestResource {
     return AnnotationBodyParser.BuildFromJson(rawbody, this.options);
   }
 
@@ -107,7 +106,7 @@ export class Annotation extends ManifestResource {
   3D clients using getBody are responsible for choosing the appropriate instance from the
   returned array. In most cases this will be the sole 0th element.
   **/
-  getBody3D(): AnnotationBody {
+  getBody3D(): ManifestResource {
     console.warn(
       "Annotation.getBody3D is deprecated: replace with getBody3D() with getBody()[0]"
     );

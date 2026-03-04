@@ -1,6 +1,6 @@
 import {
   IManifestoOptions,
-  AnnotationBody,
+  ManifestResource,
   SpecificResource,
 } from "./internal";
 
@@ -9,7 +9,7 @@ An implementation of the TextualBody class (class in JSON-LD sense)
 as it is described in Web Annotation Data Model Section 3.2.4
 https://www.w3.org/TR/annotation-model/#embedded-textual-body
 **/
-export class TextualBody extends AnnotationBody {
+export class TextualBody extends ManifestResource {
   constructor(jsonld?: any, options?: IManifestoOptions) {
     super(jsonld, options);
   }
