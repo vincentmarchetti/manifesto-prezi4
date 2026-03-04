@@ -5,7 +5,6 @@ import {
   ServiceProfile,
 } from "@iiif/vocabulary/dist-commonjs";
 import {
-  Canvas,
   IManifestoOptions,
   IIIFResource,
   ManifestType,
@@ -55,24 +54,14 @@ export class Manifest extends IIIFResource {
   }
 
   /** @deprecated Use getAccompanyingCanvas instead */
-  getPosterCanvas(): Canvas | null {
-    let posterCanvas: any = this.getProperty("posterCanvas");
-
-    if (posterCanvas) {
-      posterCanvas = new Canvas(posterCanvas, this.options);
-    }
-
-    return posterCanvas;
+  getPosterCanvas(): unknown {
+    console.log(`Manifest.getPosterCanvas | not implemented`);
+    return null;
   }
 
-  getAccompanyingCanvas(): Canvas | null {
-    let accompanyingCanvas: any = this.getProperty("accompanyingCanvas");
-
-    if (accompanyingCanvas) {
-      accompanyingCanvas = new Canvas(accompanyingCanvas, this.options);
-    }
-
-    return accompanyingCanvas;
+  getAccompanyingCanvas(): unknown {
+    console.log(`Manifest.getAccompanyingCanvas | not implemented`);
+    return null;
   }
 
   getBehavior(): Behavior | null {

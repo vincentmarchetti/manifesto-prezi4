@@ -1,49 +1,28 @@
 import { ViewingDirection, ViewingHint } from "@iiif/vocabulary/dist-commonjs";
 import {
-  Canvas,
   IManifestoOptions,
   Manifest,
   ManifestResource,
-  Scene,
-  Thumbnail,
-  Utils,
+  Scene
 } from "./internal";
 
 export class Sequence extends ManifestResource {
-  public items: Canvas[] = [];
-  private _thumbnails: Thumbnail[] | null = null;
+  public items: unknown[] = [];
+  //private _thumbnails: Thumbnail[] | null = null;
 
   constructor(jsonld?: any, options?: IManifestoOptions) {
     super(jsonld, options);
   }
 
-  getCanvases(): Canvas[] {
-    if (this.items.length) {
-      return this.items;
-    }
-
-    const items = this.__jsonld.canvases || this.__jsonld.elements;
-
-    if (items) {
-      for (let i = 0; i < items.length; i++) {
-        const c = items[i];
-        const canvas: Canvas = new Canvas(c, this.options);
-        canvas.index = i;
-        this.items.push(canvas);
-      }
-    } else if (this.__jsonld) {
-      for (let i = 0; i < this.__jsonld.length; i++) {
-        const c = this.__jsonld[i];
-        const canvas: Canvas = new Canvas(c, this.options);
-        canvas.index = i;
-        this.items.push(canvas);
-      }
-    }
-
-    return this.items;
+  getCanvases(): unknown[] {
+    console.log(`Sequence.getCanvases | not implemented because of Canvas dependence`);
+    return [] as unknown[]; 
   }
 
-  getCanvasById(id: string): Canvas | null {
+  getCanvasById(id: string):  null {
+    console.log(`Sequence.getCanvasById | not implemented because of Canvas dependence`);
+    return null;
+    /*
     for (let i = 0; i < this.getTotalCanvases(); i++) {
       const canvas = this.getCanvasByIndex(i);
 
@@ -56,6 +35,7 @@ export class Sequence extends ManifestResource {
     }
 
     return null;
+    */
   }
 
   getCanvasByIndex(canvasIndex: number): any {
@@ -75,6 +55,9 @@ export class Sequence extends ManifestResource {
   }
 
   getCanvasIndexByLabel(label: string, foliated?: boolean): number {
+    console.log(`Sequence.getCanvasIndexByLabel | unimplemented for Canvas dependence`);
+    return -1;
+    /*
     label = label.trim();
 
     if (!isNaN(<any>label)) {
@@ -114,9 +97,13 @@ export class Sequence extends ManifestResource {
     }
 
     return -1;
+    */
   }
 
   getLastCanvasLabel(alphanumeric?: boolean): string {
+    console.log(`Sequence.getLastCanvasLabel | unimplemented for Canvas dependence`);
+    return this.options.defaultLabel;
+    /*
     for (let i = this.getTotalCanvases() - 1; i >= 0; i--) {
       const canvas: Canvas = this.getCanvasByIndex(i);
       const label: string = <string>(
@@ -135,6 +122,7 @@ export class Sequence extends ManifestResource {
     }
 
     return this.options.defaultLabel;
+    */
   }
 
   getLastPageIndex(): number {
@@ -263,7 +251,10 @@ export class Sequence extends ManifestResource {
     return [];
   }
 
-  getThumbnails(): Thumbnail[] {
+  getThumbnails(): unknown[] {
+    console.log(`Sequence.getThumbnails | not implemented because of Canvas dependence`);
+    return [] as unknown[];
+    /*
     if (this._thumbnails != null) return this._thumbnails;
     this._thumbnails = [];
 
@@ -277,6 +268,7 @@ export class Sequence extends ManifestResource {
     }
 
     return this._thumbnails;
+    */
   }
 
   getStartCanvas(): string {

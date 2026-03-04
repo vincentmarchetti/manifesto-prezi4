@@ -162,7 +162,7 @@ export class ManifestResource extends JSONLDResource {
   }
 
   isCanvas(): boolean {
-    return this.getIIIFResourceType() === IIIFResourceType.CANVAS;
+    return false;
   }
 
   isCollection(): boolean {
