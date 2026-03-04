@@ -1,24 +1,25 @@
 import {
   IManifestoOptions,
-  Utils,
-  AnnotationBody,
-  Color,
-  PointSelector,
+  ManifestResource,
+  IResource,
+  JSONLDResource,
+  Color
 } from "./internal";
 
-export class Light extends AnnotationBody {
-  constructor(jsonld?: any, options?: IManifestoOptions) {
+export class Light extends ManifestResource {
+  constructor(jsonld: IResource, options?: IManifestoOptions) {
     super(jsonld, options);
   }
 
-  getColor(): Color {
+
+  get Color(): Color | null {
+    console.log(`Light.Color not implemented`);
+    return null;
+    /*
     var hexColor = this.getPropertyFromSelfOrSource("color");
     if (hexColor) return Color.fromCSS(hexColor);
     else return new Color([255, 255, 255]); // white light
-  }
-
-  get Color(): Color {
-    return this.getColor();
+    */
   }
 
   /**
@@ -34,7 +35,8 @@ export class Light extends AnnotationBody {
    *
    * This code will implement a default intensity of 1.0
    **/
-  getIntensity(): number {
+  /*
+  getIntensity(): number |  null {
     var intObject = this.getPropertyFromSelfOrSource("intensity");
     if (intObject) {
       try {
@@ -49,9 +51,26 @@ export class Light extends AnnotationBody {
       }
     } else return 1.0;
   }
-
-  get Intensity(): number {
-    return this.getIntensity();
+ */
+ 
+  get Intensity(): number | null {
+    console.log(`Light.Intensity | not implemented`);
+    return null;
+    /*
+    var intObject = this.getPropertyFromSelfOrSource("intensity");
+    if (intObject) {
+      try {
+        if (!(intObject.type === "Value" && intObject.unit === "relative"))
+          throw new Error();
+        return intObject.value as number;
+      } catch (err) {
+        throw new Error(
+          "unable to interpret raw intensity object " +
+            JSON.stringify(intObject)
+        );
+      }
+    } else return 1.0;
+    */
   }
 
   /**
@@ -70,22 +89,24 @@ export class Light extends AnnotationBody {
   * @returns number
   
   **/
-  getAngle(): number | undefined {
+  
+  get Angle(): number | null {
+    console.log(`Light.Angle | not implemented`);
+    return null;
+    /*
     if (this.isSpotLight()) {
       return Number(this.getPropertyFromSelfOrSource("angle"));
     } else {
       return undefined;
     }
-  }
-
-  get Angle(): number | undefined {
-    return this.getAngle();
+    */
   }
 
   /**
    * @return : if not null, is either a PointSelector, or an object
    * with an id matching the id of an Annotation instance.
    **/
+  /*
   getLookAt(): object | PointSelector | null {
     let rawObj = this.getPropertyAsObject("lookAt") ?? null;
     if (rawObj == null) return null;
@@ -101,23 +122,47 @@ export class Light extends AnnotationBody {
     }
     throw new Error(`unidentified value of lookAt ${rawType}`);
   }
-  get LookAt(): object | null {
-    return this.getLookAt();
+  */
+  
+  get LookAt(): JSONLDResource | null {
+    console.log('Light.LookAt | not implemented');
+    return null;
+    /*
+    let rawObj = this.getPropertyAsObject("lookAt") ?? null;
+    if (rawObj == null) return null;
+
+    let rawType = (rawObj["type"] || rawObj["@type"]) ?? null;
+    if (rawType == null) return null;
+
+    if (rawType == "Annotation") {
+      return rawObj;
+    }
+    if (rawType == "PointSelector") {
+      return new PointSelector(rawObj);
+    }
+    throw new Error(`unidentified value of lookAt ${rawType}`);
+    */
   }
 
-  isAmbientLight(): boolean {
-    return Utils.normaliseType(this.getType() || "") === "ambientlight";
+  get isAmbientLight(): boolean {
+    return (this.ResourceType === 'AmbientLight');
   }
 
-  isDirectionalLight(): boolean {
-    return Utils.normaliseType(this.getType() || "") === "directionallight";
+  get isDirectionalLight(): boolean {
+    return (this.ResourceType === 'DirectionalLight');
   }
 
-  isPointLight(): boolean {
-    return Utils.normaliseType(this.getType() || "") === "pointlight";
+  get isPointLight(): boolean {
+    return (this.ResourceType === 'PointLight');
   }
 
-  isSpotLight(): boolean {
-    return Utils.normaliseType(this.getType() || "") === "spotlight";
+  get isSpotLight(): boolean {
+    return (this.ResourceType === 'SpotLight');
   }
+  
+  get isLight():boolean {
+    return true;
+  
+  }
+  
 }

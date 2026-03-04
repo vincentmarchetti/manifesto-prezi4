@@ -1,8 +1,5 @@
-import {
-  ExternalResourceType,
-  MediaType
-} from "@iiif/vocabulary/dist-commonjs";
-import { IResource, IManifestoOptions, ManifestResource, Utils } from "./internal";
+
+import { IResource, IManifestoOptions, ManifestResource } from "./internal";
 
  
 /**
@@ -23,9 +20,15 @@ export class Model extends ManifestResource {
   // Format, Type, Width, and Height are the body properties supported
   // in the code that supports Presentation 3
   get Format(): string | null {
-    return fm = this.__jsonld__?.format?;
+    const rv = this.ResourceProperty("format");
+    if (rv == null) return null;
+    if (typeof rv === 'string') return rv;
+    const msg = `Model.Format | invalid type ${typeof rv}`;
+    console.log(msg);
+    return null;
   }
 
+  /*
   getType(): ExternalResourceType | null {
     const type: string = this.getPropertyFromSelfOrSource("type");
 
@@ -37,6 +40,7 @@ export class Model extends ManifestResource {
 
     return null;
   }
+  */
 
 
 

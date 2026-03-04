@@ -1,12 +1,10 @@
 import {
   IManifestoOptions,
+  JSONLDResource,
   ManifestResource,
-  Annotation,
-  AnnotationBody,
-  AnnotationBodyParser,
+  IResource,
   Transform,
-  TransformParser,
-  PointSelector,
+  TransformParser
 } from "./internal";
 
 /**
@@ -18,7 +16,7 @@ import {
     The getTransform() method returning an Array of 3D Transfom resources, is
     an extension of SpecificResource beyond the web annotation model.
 */
-export class SpecificResource extends ManifestResource {
+export class SpecificResource extends JSONLDResource {
   /*
   property distinguishing instances of SpecificResource from instances of AnnotionBody.
   The return type of the Annotation.getBody() method is an array of instances of the 
@@ -33,11 +31,14 @@ export class SpecificResource extends ManifestResource {
   */
   isSpecificResource: boolean = true;
 
-  constructor(jsonld: any, options?: IManifestoOptions) {
-    super(jsonld, options);
-    this.isSpecificResource = true;
+  options : IManifestoOptions | null = null;
+  
+  constructor(jsonld: IResource, options?: IManifestoOptions) {    
+    super(jsonld);
+    this.options = options ?? null; // saving to use to pass on to the Source object
   }
 
+  /*
   getScope(): object | Annotation | null {
     var raw = this.getPropertyAsObject("scope");
     if (raw?.isIRI) return raw;
@@ -50,17 +51,19 @@ export class SpecificResource extends ManifestResource {
 
     return null;
   }
+  */
 
-  getSource(): object | AnnotationBody {
+  /*
+  getSource(): ManifestResource {
     var raw = this.getPropertyAsObject("source");
     if (raw.isIRI) return raw;
 
-    /*
+    
   	    this logic gets a little convoluted, because we have to preserve
   	    the cases where the raw json is an array for the sources of a
   	    SpecificResource applied to an annotation body, while for a target
   	    of an Annotation we just want a single object
-  	*/
+  	
     // case of a source of a SpecificResource which is an Annotation target
     if (raw) {
       var containerTypes = ["Scene", "Canvas"];
@@ -75,12 +78,43 @@ export class SpecificResource extends ManifestResource {
     }
     throw new Error("cannot resolve Source " + JSON.stringify(raw));
   }
+  */
 
-  get Source(): object | AnnotationBody {
-    return this.getSource();
+  get Source(): ManifestResource | null {
+    const msg = `SpecificResource.Source | not implemented`;
+    console.log(msg);
+    return null;
+    /*
+    var raw = this.getPropertyAsObject("source");
+    if (raw.isIRI) return raw;
+
+    
+  	    this logic gets a little convoluted, because we have to preserve
+  	    the cases where the raw json is an array for the sources of a
+  	    SpecificResource applied to an annotation body, while for a target
+  	    of an Annotation we just want a single object
+  	
+    // case of a source of a SpecificResource which is an Annotation target
+    if (raw) {
+      var containerTypes = ["Scene", "Canvas"];
+      let singleItem = [].concat(raw)[0];
+      if (containerTypes.includes(singleItem["type"])) return singleItem;
+    }
+    if (raw) {
+      var item = [].concat(raw)[0];
+      if (item) {
+        return AnnotationBodyParser.BuildFromJson(item, this.options);
+      }
+    }
+    throw new Error("cannot resolve Source " + JSON.stringify(raw));
+    */
   }
 
-  getSelector(): PointSelector | null {
+  get Selector(): JSONLDResource | null {
+    const msg = `SpecificResource | not implemented`;
+    console.log(msg);
+    return null;
+    /*
     const propValue:unknown = this.getProperty("selector");
 
     const raw : object | null = ( (pv:unknown):object|null => {
@@ -115,11 +149,9 @@ export class SpecificResource extends ManifestResource {
         const msg = `SpecificResource.Selector invalid type: ${visibleType}`;
         throw new Error(msg);
     }
+    */
   }
   
-  get Selector(): PointSelector | null {
-    return this.getSelector();
-  }
 
   
   get Transform(): Transform[] {
