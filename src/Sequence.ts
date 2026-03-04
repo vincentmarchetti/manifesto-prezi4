@@ -5,7 +5,6 @@ import {
   Manifest,
   ManifestResource,
   Scene,
-  Thumb,
   Thumbnail,
   Utils,
 } from "./internal";
@@ -259,18 +258,9 @@ export class Sequence extends ManifestResource {
   }
 
   // todo: deprecate
-  getThumbs(width: number, height?: number): Thumb[] {
-    //console.warn('getThumbs will be deprecated, use getThumbnails instead');
-    const thumbs: Thumb[] = [];
-    const totalCanvases: number = this.getTotalCanvases();
-
-    for (let i = 0; i < totalCanvases; i++) {
-      const canvas: Canvas = this.getCanvasByIndex(i);
-      const thumb: Thumb = new Thumb(width, canvas);
-      thumbs.push(thumb);
-    }
-
-    return thumbs;
+  getThumbs(width: number, height?: number): unknown[] {
+    console.log(`Sequence.getThumbs | not implementes`);
+    return [];
   }
 
   getThumbnails(): Thumbnail[] {

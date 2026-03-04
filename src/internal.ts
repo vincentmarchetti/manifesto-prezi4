@@ -43,7 +43,7 @@ export * from "./Service";
 export * from "./Size";
 
 export * from "./StatusCode";
-export * from "./Thumb";
+
 export * from "./Thumbnail";
 export * from "./Transform";
 
