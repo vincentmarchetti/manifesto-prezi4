@@ -121,12 +121,11 @@ export class SpecificResource extends ManifestResource {
     return this.getSelector();
   }
 
-
   
-  getTransform(): Transform[] {
-    console.debug( "inside getTransform() ");
-    var transformItems : unknown = this.getProperty("transform");
-    if (transformList == null) return ([] as Transform[]);
+  get Transform(): Transform[] {
+    
+    const transformItems : unknown = this.getProperty("transform");
+    if (transformItems  == null) return ([] as Transform[]);
     
      
     if (!Array.isArray(transformItems)){
@@ -145,10 +144,6 @@ export class SpecificResource extends ManifestResource {
             throw new Error(msg);
         }
     });
-  }
-  
-  get Transform(): Transform[] {
-    return this.getTransform();
   }
 
 
