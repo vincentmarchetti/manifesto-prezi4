@@ -3,7 +3,9 @@ import {
   IManifestoOptions,
   Light,
   Camera,
-  TextualBody,
+  IResource,
+  ResourceOps
+  
 } from "./internal";
 
 // Todo: Add these to @iiif/vocabulary
@@ -26,20 +28,19 @@ const DisplayedTypes: string[] = [
 ];
 
 export class AnnotationBodyParser {
-  static BuildFromJson(
-    jsonld: any,
-    options?: IManifestoOptions
-  ): AnnotationBody {
-    const type =
-      jsonld.type === "SpecificResource" && jsonld.source
-        ? [].concat(jsonld.source)[0]["type"]
-        : jsonld.type;
-
-    if (DisplayedTypes.includes(type))
-      return new AnnotationBody(jsonld, options);
-    else if (LightTypes.includes(type)) return new Light(jsonld, options);
-    else if (CameraTypes.includes(type)) return new Camera(jsonld, options);
-    else if (type === "TextualBody") return new TextualBody(jsonld, options);
-    else throw new Error("unimplemented type for AnnotationBody: " + type);
+  static BuildFromJson(jsonld: unknown , options?: IManifestoOptions): object {
+  
+    const res : IResource = ResourceOps.coerce_to_resource(jsonld);
+    
+    const BodyCtor = ((tp:string):any => {
+        if (tp === "SpecificResource") return SpecificResource;
+        if (tp === "Model" )           return Model;
+        if (LightTypes.includes(type)) return Light;
+        if (CameraTypes.includes(type)) return new Camera;
+        const msg = `AnnotationBodyParser.BuildFromJson unrecognized type ${tp}`;
+        throw new Error(msg);
+    })(res.type);
+    
+    return new BodyCtor(res, options);     
   }
 }
