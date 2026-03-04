@@ -25,6 +25,7 @@ export * from "./IExternalResource";
 export * from "./IExternalResourceData";
 export * from "./IExternalResourceOptions";
 export * from "./IManifestoOptions";
+export * from "./IResource";
 export * from "./LabelValuePair";
 export * from "./Language";
 export * from "./LanguageMap";
