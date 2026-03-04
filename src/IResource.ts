@@ -21,24 +21,24 @@ export interface IResource{
     static cast_to_resource(a : unknown ) : IResource | null {
         if ( a == null ||
              Array.isArray(a) ||
-             typeof a != 'object' ) return null;
+             typeof a != 'object' ||
+             typeof a['type'] === 'string' ) return null;
+        return a as IResource;        
     }
              
-    static coerce_to_resource( a:unknown , allow_array = True ) : IResource | null {
-        a = ( (x:unknown):unknown  => {
-            if (Array.isArray(x)){
+    static coerce_to_resource( a:unknown , coerce_array = true ) : IResource | null {
+        if ( coerce_array && Array.isArray(a)){
+            a = ( (x:unknown[] ):unknown  => {               
                 const n = x.length;
                 if (n==0)
                     return null;
                 if (n > 1){
-                    const mgs = `IResourceOps.coerce_to_resource : multi item array`;
+                    const msg = `IResourceOps.coerce_to_resource : multi item array`;
                     console.warn(msg);
                 }
-                return x[0];
-            }
-            return x;
-        })(a);
-        
+                return x[0];                
+            })(a as unknown[] );
+        }
         return ResourceOps.cast_to_resource(a);
     }
  }
