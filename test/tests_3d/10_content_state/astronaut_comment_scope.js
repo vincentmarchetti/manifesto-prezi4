@@ -78,7 +78,7 @@ describe('astronaut_comment_scope', function() {
       const target = comment.getTarget();
       expect( target.isSpecificResource );
 
-      const scopeAnnotation = target.getScope();
+      const scopeAnnotation = target.Scope;
       expect(scopeAnnotation.isAnnotation()).to.be.true;
       expect(scopeAnnotation.getMotivation()[0]).to.equal('contentState');
     });
