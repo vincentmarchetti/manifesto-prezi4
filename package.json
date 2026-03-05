@@ -4,7 +4,7 @@
   "description": "IIIF Presentation API utility library for client and server with 3D extension",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build ; mocha",
+    "test": "npm run build && mocha",
     "docs": "typedoc"
   },
   "keywords": [
