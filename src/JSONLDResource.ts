@@ -5,6 +5,11 @@ export class JSONLDResource {
   id: string;
   __jsonld: any;
 
+  static ctors:any = null;
+  static Construct(res:IResource):JSONLDResource{
+    throw new Error(`JSONLDResource.Construct | not initialized`);
+  }
+  
   constructor(jsonld : IResource ) {
     this.__jsonld = jsonld;
     this.context = this.getProperty("context");
