@@ -1,4 +1,5 @@
 import {IResource} from "./IResource"; 
+import {IManifestoOptions} from "./IManifestoOptions";
 
 export class JSONLDResource {
   context: string;
@@ -6,7 +7,7 @@ export class JSONLDResource {
   __jsonld: any;
 
   static ctors:any = null;
-  static Construct(res:IResource):JSONLDResource{
+  static Construct(res:IResource, options? : IManifestoOptions):JSONLDResource{
     throw new Error(`JSONLDResource.Construct | not initialized`);
   }
   

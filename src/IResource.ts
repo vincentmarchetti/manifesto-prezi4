@@ -22,7 +22,11 @@ export interface IResource{
         if ( a == null ||
              Array.isArray(a) ||
              typeof a != 'object' ||
-             typeof a['type'] === 'string' ) return null;
+             typeof a['type'] !== 'string' ) {
+                const msg = `ResourceOps.cast_to_resource ${a} ${a==null} ${Array.isArray(a)} ${typeof a}`;
+                throw new Error(msg);
+                return null;
+             }
         return a as IResource;        
     }
              
