@@ -8,6 +8,8 @@ import {
   IManifestoOptions,
   IIIFResource,
   IResource,
+  JSONLDResource,
+  ManifestResource,
   ResourceOps,
   ManifestType,
   Range,
@@ -64,9 +66,34 @@ export class Manifest extends IIIFResource {
     return null;
   }
 
-  get Items() : IResource[] {
-    const itemsProp = this.ResourceProperty("items");
-    return ResourceOps.cast_to_array( itemsProp );
+  get Items() : ManifestResource[] {
+    try{
+        const itemsProp : unknown = this.ResourceProperty("items");
+        const resourceItems:IResource[] | null = ResourceOps.cast_to_array( itemsProp );
+        
+        if (resourceItems == null ){
+            const msg = `ManifestResource.Items | invalid value`;
+            throw new Error(msg);
+        }
+        return resourceItems.map( (item:IResource, index:number):ManifestResource => {
+            try{
+                const resource:JSONLDResource = JSONLDResource.Construct( item, this.options);
+                if (!["Scene","Canvas"].includes( resource.ResourceType)) 
+                    throw new Error("not a container");
+                return resource as ManifestResource;
+            }
+            catch (error){
+                const msg = 'map at element ${index} | ${error}';
+                throw new Error(msg);
+            }
+        });
+    }
+    catch (error){
+        const msg = `Manifest.Items | ${error}`;
+        throw new Error(msg);
+    }
+   
+    
   }
 
   getBehavior(): Behavior | null {
