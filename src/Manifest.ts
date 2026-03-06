@@ -7,6 +7,8 @@ import {
 import {
   IManifestoOptions,
   IIIFResource,
+  IResource,
+  ResourceOps,
   ManifestType,
   Range,
   Service,
@@ -60,6 +62,11 @@ export class Manifest extends IIIFResource {
   getAccompanyingCanvas(): unknown {
     console.log(`Manifest.getAccompanyingCanvas | not implemented`);
     return null;
+  }
+
+  get Items() : IResource[] {
+    const itemsProp = this.ResourceProperty("items");
+    return ResourceOps.cast_to_array( itemsProp );
   }
 
   getBehavior(): Behavior | null {
