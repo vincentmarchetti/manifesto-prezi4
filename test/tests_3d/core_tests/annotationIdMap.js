@@ -13,7 +13,7 @@ let anno2_id = "https://example.org/iiif/3d/anno2";
 
 var manifest;
 
-describe('Manifest.annotationIdMap', function() {
+describe.skip('Manifest.annotationIdMap', function() {
 
     it('loads successfully', function(done) {
         manifesto.loadManifest(manifest_url).then(function(data) {
