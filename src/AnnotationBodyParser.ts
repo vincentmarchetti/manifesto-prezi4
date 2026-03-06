@@ -25,7 +25,7 @@ const BodyCtorDict = {
 export class AnnotationBodyParser {
   static BuildFromJson(jsonld: unknown , options?: IManifestoOptions): ManifestResource {
   
-    const res  = ResourceOps.coerce_to_resource(jsonld);
+    const res  = ResourceOps.cast_to_resource(jsonld);
     if (res === null)
         throw new Error(`AnnotationBodyParser,BuildFromJson invalid value`);
         
