@@ -19,6 +19,10 @@ export class JSONLDResource {
   ResourceProperty(name:string):unknown {
     return this.__jsonld[name];
   }
+  
+  ResourceHasProperty( name: string ) : boolean {
+    return Boolean( this.ResourceProperty(name) == null);
+  }
 
   get ResourceType():string {
     return this.ResourceProperty("type") as string;
