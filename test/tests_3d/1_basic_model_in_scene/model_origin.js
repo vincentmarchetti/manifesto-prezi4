@@ -8,7 +8,7 @@ var ExternalResourceType = require('@iiif/vocabulary/dist-commonjs/').ExternalRe
 var MediaType = require('@iiif/vocabulary/dist-commonjs/').MediaType;
 
 
-let manifest,  sequence, scene , annotation, body;
+let manifest,  items, scene , annotation, body;
 
 let manifest_url = {
         local: "http://localhost:3001/model_origin.json",
@@ -24,15 +24,11 @@ describe('model_origin', function() {
         });
     });
 
-    it('has a sequence', function() {
-        sequence = manifest.getSequenceByIndex(0);
-        expect(sequence).to.exist;
-    });
-
-    it('has a scene', function() {
-        scene = sequence.getScenes()[0];
-        expect(scene).to.exist;
-        expect(scene.isScene()).to.be.ok;
+    it('has one scene', function() {
+        items = manifest.Items;
+        expect(items).to.have.lengthOf(1);
+        scene = items[0];
+        expect(scene.isScene).to.equal(true);
     });
     
     
