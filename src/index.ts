@@ -16,7 +16,6 @@ import {    TranslateTransform,
             Annotation,
             AnnotationPage,
             Scene,
-            Sequence,
             PointSelector,
             JSONLDResource,
             IResource,
@@ -54,7 +53,6 @@ JSONLDResource.ctors = {
     "Annotation"	        : Annotation,
     "AnnotationPage"	    : AnnotationPage,
     "Scene"	                : Scene,
-    "Sequence"	            : Sequence,
     "PointSelector"	        : PointSelector
 };
 

@@ -9,7 +9,6 @@ import {
   IIIFResource,
   ManifestType,
   Range,
-  Sequence,
   Service,
   TreeNode,
   TreeNodeType,
@@ -32,7 +31,6 @@ import {
 export class Manifest extends IIIFResource {
   public index: number = 0;
   private _allRanges: Range[] | null = null;
-  public items: Sequence[] = [];
   private _topRanges: Range[] = [];
 
   constructor(jsonld?: any, options?: IManifestoOptions) {
@@ -255,39 +253,6 @@ export class Manifest extends IIIFResource {
     return null;
   }
 
-  /**
-   * @returns Array of Sequence instances
-   **/
-  getSequences(): Sequence[] {
-    if (this.items.length) {
-      return this.items;
-    }
-
-    // IxIF mediaSequences overrode sequences, so need to be checked first.
-    // deprecate this when presentation 3 ships
-    const items: any = this.__jsonld.mediaSequences || this.__jsonld.sequences;
-
-    if (items) {
-      for (let i = 0; i < items.length; i++) {
-        const s: any = items[i];
-        const sequence: any = new Sequence(s, this.options);
-        this.items.push(sequence);
-      }
-    } else if (this.__jsonld.items) {
-      const sequence: any = new Sequence(this.__jsonld.items, this.options);
-      this.items.push(sequence);
-    }
-
-    return this.items;
-  }
-
-  getSequenceByIndex(sequenceIndex: number): Sequence {
-    return this.getSequences()[sequenceIndex];
-  }
-
-  getTotalSequences(): number {
-    return this.getSequences().length;
-  }
 
   getManifestType(): ManifestType {
     const service: Service = <Service>(
@@ -299,9 +264,6 @@ export class Manifest extends IIIFResource {
     return ManifestType.EMPTY;
   }
 
-  isMultiSequence(): boolean {
-    return this.getTotalSequences() > 1;
-  }
 
   isPagingEnabled(): boolean {
     const viewingHint: ViewingHint | null = this.getViewingHint();
@@ -344,10 +306,6 @@ export class Manifest extends IIIFResource {
   get annotationIdMap(): Object {
     if (this._annotationIdMap == null) {
       this._annotationIdMap = {};
-      for (var seq of this.getSequences())
-        for (var scene of seq.getScenes())
-          for (var anno of scene.getContent())
-            this._annotationIdMap[anno.id] = anno;
     }
     return this._annotationIdMap;
   }

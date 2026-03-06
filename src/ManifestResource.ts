@@ -185,8 +185,4 @@ export class ManifestResource extends JSONLDResource {
       <IIIFResourceType>Utils.normaliseType("Scene")
     );
   }
-
-  isSequence(): boolean {
-    return this.getIIIFResourceType() === IIIFResourceType.SEQUENCE;
-  }
 }
