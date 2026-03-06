@@ -45,4 +45,24 @@ export interface IResource{
         }
         return ResourceOps.cast_to_resource(a);
     }
+    
+    static cast_to_array( a: unknown ) : IResource[] {
+        if (a == null) return ([] as IResource[] );
+    
+        const as_resource : IResource | null = ResourceOps.cast_to_resource(a);
+        if (as_resource !== null){
+            return [ as_resource as IResource ];
+        }
+        if (Array.isArray(a)){
+            return a.map( ( t:unknown, index:number):IResource => {
+                const as_resource:IResource | null = ResourceOps.cast_to_resource(t);
+                if (as_resource == null ){
+                    const msg = `ResourceOps.cast_to_array | element {index} not an IResource`;
+                    throw new Error(msg);
+                }
+                return as_resource as IResource;
+            });
+        }
+        return  ([] as IResource[] );
+    }
  }
