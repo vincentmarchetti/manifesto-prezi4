@@ -33,19 +33,16 @@ describe('model_origin', function() {
     
     
     it('with one annotation', function(){
-        var annotations = scene.getContent();
-        expect(annotations.length).to.equal(1);
+        const annotations = scene.Items.reduce( (accum, page) => {
+            return accum.concat( page.Items);  }, [] );
+        expect( annotations ).to.have.lengthOf(1);
         annotation = annotations[0];
     });
         
     it('that target the scene', function(){        
-        var target = annotation.getTarget();
-        target.id.should.exist;
-        target.id.should.equal( scene.id );
-        
-        if (target.isSpecificResource)
-            target.getSource().should.exist;
-
+        var target = annotation.Target;
+        target.ResourceId.should.exist;
+        target.ResourceId.should.equal( scene.ResourceId );
     });
     
     it('and body is an AnnotationBody', function(){        
