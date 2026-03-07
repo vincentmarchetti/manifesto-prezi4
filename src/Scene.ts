@@ -1,6 +1,8 @@
 import {
-  Annotation,
   AnnotationPage,
+  IResource,
+  ResourceOps,
+  JSONLDResource,
   IManifestoOptions,
   ManifestResource,
   Color,
@@ -9,51 +11,12 @@ import {
 import flattenDeep from "lodash/flattenDeep";
 
 export class Scene extends ManifestResource {
-  constructor(jsonld: any, options: IManifestoOptions) {
+  constructor(jsonld: IResource, options: IManifestoOptions) {
     super(jsonld, options);
   }
 
-  // Presentation API 3.0
-  getContent(): Annotation[] {
-    const content: Annotation[] = [];
 
-    const items = this.__jsonld.items || this.__jsonld.content;
-
-    if (!items) return content;
-
-    // should be contained in an AnnotationPage
-    let annotationPage: AnnotationPage | null = null;
-
-    if (items.length) {
-      annotationPage = new AnnotationPage(items[0], this.options);
-    }
-
-    if (!annotationPage) {
-      return content;
-    }
-
-    const annotations: Annotation[] = annotationPage.getItems();
-
-    for (let i = 0; i < annotations.length; i++) {
-      const a = annotations[i];
-      const annotation = new Annotation(a, this.options);
-      content.push(annotation);
-    }
-
-    return content;
-  }
-
-  // 3D extension
-  get Content(): Annotation[] {
-    return this.getContent();
-  }
-
-  getAnnotationById(searchId: string): Annotation | null {
-    for (var anno of this.Content) if (anno.id === searchId) return anno;
-    return null;
-  }
-
-  getBackgroundColor(): Color | null {
+  get BackgroundColor(): Color | null {
     // regular expression intended to match strings like
     // "#FF00FF" -- interpreted as three hexadecimal values
     // in range 0-255 . Not that the \w escape matches digits,
@@ -67,38 +30,32 @@ export class Scene extends ManifestResource {
     else return null;
   }
 
-  // Annotations not rendered as part of the Canvas
-  // Have non-painting motivations and are listed in Canvas annotations property, not items property
-  getNonContentAnnotations(): Annotation[] {
-    const annotationPages = (this.__jsonld.annotations || [])
-      .filter(
-        (annotationPage) =>
-          annotationPage && annotationPage.type === "AnnotationPage"
-      )
-      .map(
-        (annotationPage) => new AnnotationPage(annotationPage, this.options)
-      ) as AnnotationPage[];
-    if (!annotationPages.length) return [];
-
-    const annotationsNested = annotationPages.map((page) =>
-      page.getItems()
-    ) as Annotation[][];
-    const annotationsFlat = flattenDeep(annotationsNested) as Annotation[];
-
-    return annotationsFlat.map(
-      (annotation) => new Annotation(annotation, this.options)
-    );
-  }
   
-  get annotationPages():AnnotationPage[]{
-    const items = this.__jsonld.items || this.__jsonld.content;
-    if (items === undefined ) return [];
-    
-    if (!Array.isArray(items))
-        throw new Error("manifesto.Scene.annotationPages : json content not an array");
-       
-    return items.map( (item) => {
-        return new AnnotationPage(item, this.options);
-    });    
+  get Items() : AnnotationPage[] {
+    try{
+        const itemsProp : unknown = this.ResourceProperty("items");
+        const resourceItems:IResource[] | null = ResourceOps.cast_to_array( itemsProp );
+        
+        if (resourceItems == null ){
+            const msg = `Scene.Items | invalid value`;
+            throw new Error(msg);
+        }
+        return resourceItems.map( (item:IResource, index:number):AnnotationPage => {
+            try{
+                const resource:JSONLDResource = JSONLDResource.Construct( item, this.options);
+                if (!["AnnotationPage"].includes( resource.ResourceType)) 
+                    throw new Error("not AnnotationPage");
+                return resource as AnnotationPage;
+            }
+            catch (error){
+                const msg = 'map at element ${index} | ${error}';
+                throw new Error(msg);
+            }
+        });
+    }
+    catch (error){
+        const msg = `Scene.Items | ${error}`;
+        throw new Error(msg);
+    }
   }
-}
+}   
