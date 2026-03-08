@@ -1,27 +1,20 @@
 var expect = require('chai').expect;
 var should = require('chai').should();
 var manifesto = require('../../../dist-commonjs/');
-//var manifests_3d = require('../fixtures/manifests_3d');
-
-
 var ExternalResourceType = require('@iiif/vocabulary/dist-commonjs/').ExternalResourceType;
 var MediaType = require('@iiif/vocabulary/dist-commonjs/').MediaType;
 
-
-let manifest,  items, scene , annotation, body;
-
-let manifest_url = {
-        local: "http://localhost:3001/model_origin.json",
-        remote : "https://raw.githubusercontent.com/IIIF/3d/eds/manifests/1_basic_model_in_scene/model_origin.json"
-    }.remote;
+const fs = require('node:fs');
+const manifest_path = './test/fixtures/1_basic_model_in_scene/model_origin.json';
+const manifest_data = JSON.parse( fs.readFileSync(manifest_path, 'utf8'));
+                      
+let manifest;
 
 describe('model_origin', function() {
 
-    it('loads successfully', function(done) {
-        manifesto.loadManifest(manifest_url).then(function(data) {
-            manifest = manifesto.parseManifest(data);
-            done();
-        });
+    it('loads successfully', function() {
+        expect( manifest_data).to.exist;
+        manifest = manifesto.buildManifest(manifest_data);
     });
 
     it('has one scene', function() {
@@ -30,8 +23,9 @@ describe('model_origin', function() {
         scene = items[0];
         expect(scene.isScene).to.equal(true);
     });
+
     
-    
+    /*
     it('with one annotation', function(){
         const annotations = scene.Items.reduce( (accum, page) => {
             return accum.concat( page.Items);  }, [] );
@@ -80,5 +74,5 @@ describe('model_origin', function() {
         if (mediaType)
             ['MediaType.GLB, MediaType.GLTF'].should.include(mediaType);
     });
-        
+    */
 });

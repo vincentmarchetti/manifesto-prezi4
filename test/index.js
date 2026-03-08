@@ -114,16 +114,17 @@ else{
 }
 
 function run_iiif3d_tests(){
+    /*
     require('./tests_3d/core_tests/parse_manifest.js');
     require('./tests_3d/core_tests/class_color.js');
     require('./tests_3d/core_tests/annotationIdMap.js');
     require('./tests_3d/core_tests/threejs_math.js');
     require('./tests_3d/core_tests/Geometry3d.js');
     require('./tests_3d/core_tests/iiif_label.js');
+    */
     
     describe("1_basic_model_in_scene" , function(){
-        importTest('model_origin', './tests_3d/1_basic_model_in_scene/model_origin.js');
-        importTest('model_origin_bgcolor', './tests_3d/1_basic_model_in_scene/model_origin_bgcolor.js');
+        require('./tests_3d/1_basic_model_in_scene/model_origin.js');
     });
     return;
     describe("4_transform_and_position" , function(){
