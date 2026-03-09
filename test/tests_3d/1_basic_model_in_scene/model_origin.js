@@ -5,74 +5,44 @@ var ExternalResourceType = require('@iiif/vocabulary/dist-commonjs/').ExternalRe
 var MediaType = require('@iiif/vocabulary/dist-commonjs/').MediaType;
 
 const fs = require('node:fs');
-const manifest_path = './test/fixtures/1_basic_model_in_scene/model_origin.json';
-const manifest_data = JSON.parse( fs.readFileSync(manifest_path, 'utf8'));
+
                       
-let manifest;
-
-describe('model_origin', function() {
-
-    it('loads successfully', function() {
-        expect( manifest_data).to.exist;
-        manifest = manifesto.buildManifest(manifest_data);
+describe('model_origin.json', function() {
+    let manifest, scene, annotation    
+    
+    it('loads', function() {
+        const manifest_path = './test/fixtures/1_basic_model_in_scene/model_origin.json';
+        manifest_json = JSON.parse( fs.readFileSync(manifest_path, 'utf8'));
+        manifest = manifesto.buildManifest(manifest_json);
+        expect(manifest).to.be.instanceOf(manifesto.Manifest);
     });
 
     it('has one scene', function() {
+        if (manifest == null ) this.skip();
         items = manifest.Items;
         expect(items).to.have.lengthOf(1);
         scene = items[0];
         expect(scene.isScene).to.equal(true);
     });
 
-    
-    /*
-    it('with one annotation', function(){
-        const annotations = scene.Items.reduce( (accum, page) => {
-            return accum.concat( page.Items);  }, [] );
-        expect( annotations ).to.have.lengthOf(1);
-        annotation = annotations[0];
-    });
-        
-    it('that target the scene', function(){        
-        var target = annotation.Target;
-        target.ResourceId.should.exist;
-        target.ResourceId.should.equal( scene.ResourceId );
+    it('has one annotation', function() {
+        if ( scene == null) this.skip();
+        const allAnnotation = scene.Items.flatMap( (page) => page.Items );
+        expect(allAnnotation).to.have.lengthOf(1);
+        annotation=allAnnotation[0];
     });
     
-    it('and body is an AnnotationBody', function(){        
-        body = annotation.getBody()[0];
-        expect( body.isModel() ).to.equal(true);
-        expect(Array.isArray(body)).to.equal(false);
-        expect(body.isSpecificResource).to.equal(false);
-        body.getType().should.equal(ExternalResourceType.MODEL);
+    it('annotation body', function(){
+        if (annotation == null) skip();
+        const body=annotation.Body;
+        expect( body.isModel ).to.equal(true);
+        expect( body ).to.be.instanceOf(manifesto.Model);
     });
     
-    it('and body has IIIFResourceType', function(){        
-        body = annotation.getBody()[0];
-        expect(body.getIIIFResourceType()).to.exist;
-        
-        let test = ( body.getIIIFResourceType() == ExternalResourceType.MODEL );
-        expect(test).to.equal(true);
-        
+    it('annotation target', function(){
+        if (annotation == null) skip();
+        const body=annotation.Target;
+        expect( body.isScene ).to.equal(true);
+        expect( body ).to.be.instanceOf(manifesto.Scene);
     });
-
-    it('and body has no transforms', function(){        
-        body = annotation.getBody()[0];
-        expect(body.getTransform()).to.have.lengthOf(0);
-    });
-
-    it('body id looks like a model url', function(){        
-        body.id.should.include('astronaut.glb');
-    });
-
-    it('body resource URI id looks like a model url', function(){        
-        body.getResourceID().should.include('astronaut.glb');
-    });
-    
-    it('body Format (if defined) is glb or glTF', function(){
-        var mediaType = body.getFormat();
-        if (mediaType)
-            ['MediaType.GLB, MediaType.GLTF'].should.include(mediaType);
-    });
-    */
 });
