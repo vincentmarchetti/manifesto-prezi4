@@ -21,7 +21,7 @@ export class JSONLDResource {
   }
   
   ResourceHasProperty( name: string ) : boolean {
-    return Boolean( this.ResourceProperty(name) == null);
+    return Boolean( this.ResourceProperty(name) != null);
   }
 
   get ResourceType():string {
