@@ -46,3 +46,32 @@ describe('model_origin.json', function() {
         expect( body ).to.be.instanceOf(manifesto.Scene);
     });
 });
+
+describe('model_origin_bgcolor', function() {
+    let manifest, scene
+    it('loads', function() {
+        const manifest_path = './test/fixtures/1_basic_model_in_scene/model_origin_bgcolor.json';
+        manifest_json = JSON.parse( fs.readFileSync(manifest_path, 'utf8'));
+        manifest = manifesto.buildManifest(manifest_json);
+        expect(manifest).to.be.instanceOf(manifesto.Manifest);
+    });
+
+    it('has one scene', function() {
+        if (manifest == null ) this.skip();
+        items = manifest.Items;
+        expect(items).to.have.lengthOf(1);
+        scene = items[0];
+        expect(scene.isScene).to.equal(true);
+    });
+
+
+    
+    it('with a defined background color', function(){
+        var backgroundColor = scene.BackgroundColor;
+        expect(backgroundColor).to.exist;
+        backgroundColor.red.should.equal(255);
+        backgroundColor.green.should.equal(0);
+        backgroundColor.blue.should.equal(254);
+    });
+});
+
