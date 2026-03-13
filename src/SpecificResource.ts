@@ -156,16 +156,16 @@ export class SpecificResource extends JSONLDResource {
   
   get Transform(): ITransform[] {
     
-    const transformItems : IResource[] | null = ResourceOps.cast_to_arraythis(ResourceProperty("transform"));
+    const transformItems : IResource[] | null = ResourceOps.cast_to_array(this.ResourceProperty("transform"));
     if (transformItems  == null){
         const msg = `SpecificResource.Transform | cannot parse "transform" property`;
-        thrown new Error(msg);
+        throw new Error(msg);
     }
     
     return transformItems.map( (transformItem:IResource, index:number ):ITransform => {
     
         try{
-            const tmp = JSONLDResource.Construct(transformItem );
+            const tmp = JSONLDResource.Construct(transformItem ) as any;
             if (!tmp.isTransform) throw new Error(`not a ITransform instance`);
             return (tmp as ITransform);
         }

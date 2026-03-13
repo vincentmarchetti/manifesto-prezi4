@@ -53,4 +53,3 @@ export * from "./TreeNodeType";
 export * from "./Utils";
 export * from "./Color";
 
-export * from "./Geometry3d";

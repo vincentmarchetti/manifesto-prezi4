@@ -12,7 +12,9 @@ abstract class TransformBase extends JSONLDResource {
     super(jsonld);
   }
   
-  AxesValuesBase( defaultValue: Number[] ){
+  isTransform : boolean = true;
+  
+  AxesValuesBase( defaultValue: Number ){
     return ["x","y","z"].map( (axis:string):Number => {
         const raw = this.ResourceProperty(axis);
         if (raw == null) return defaultValue;
@@ -31,47 +33,33 @@ export class TranslateTransform extends TransformBase implements ITransform {
     super(jsonld);
   }
   
-  isTransform:boolean = true;
   isTranslateTransform = true;
 
-  get AxesValues():Number[] => this.AxesValueBase(1.0);
+  get AxesValues():Number[]{
+    return this.AxesValuesBase(0.0);
+  }
 }
 
-export class RotateTransform extends Transform {
+export class RotateTransform extends TransformBase implements ITransform {
   constructor(jsonld: IResource) {
     super(jsonld);
-    this.
   }
 
-  isTransform:boolean = true;
   RotateTransform:boolean = true;
 
   get AxesValues():Number[]{
-    return ["x","y","z"].map( (axis:string):Number => {
-        const raw = this.ResourceProperty(axis);
-        if (raw == null) return 0.0;
-        const conv = Number(raw);
-        if (conv != null) return (conv as Number);
-        const msg = `RotateTransform.AxesValues | axis ${axis} not a number`;
-        throw new Error(msg);
-    })
+    return this.AxesValuesBase(0.0);
   }
 }
 
-export class ScaleTransform extends Transform {
+export class ScaleTransform extends TransformBase implements ITransform {
   constructor(jsonld?: any) {
     super(jsonld);
-    this.isScaleTransform = true;
   }
+  
   isScaleTransform:boolean = true;
+  
   get AxesValues():Number[]{
-    return ["x","y","z"].map( (axis:string):Number => {
-        const raw = this.ResourceProperty(axis);
-        if (raw == null) return 1.0;
-        const conv = Number(raw);
-        if (conv != null) return (conv as Number);
-        const msg = `ScaleTransform.AxesValues | axis ${axis} not a number`;
-        throw new Error(msg);
-    })
+    return this.AxesValuesBase(0.0);
   }
 }
