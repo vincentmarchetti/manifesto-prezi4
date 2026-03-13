@@ -46,14 +46,11 @@ export * from "./StatusCode";
 export * from "./Thumbnail";
 export * from "./Transform";
 
-export * from "./TranslateTransform";
-export * from "./TransformParser";
+
+
 export * from "./TreeNode";
 export * from "./TreeNodeType";
 export * from "./Utils";
-export * from "./TranslateTransform";
-export * from "./RotateTransform";
-export * from "./ScaleTransform";
 export * from "./Color";
 
 export * from "./Geometry3d";

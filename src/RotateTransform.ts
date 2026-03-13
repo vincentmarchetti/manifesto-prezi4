@@ -6,28 +6,15 @@ export class RotateTransform extends Transform {
     this.isRotateTransform = true;
   }
 
-  /**
-   * Returns an object with x,y,z attributes whose values are
-   * a counter-clockwise rotation in degrees about the fixed coordinate
-   * system axes.
-   *
-   * @returns object
-   **/
-  getRotation(): object {
-    var retVal = {};
-    for (const attrib of ["x", "y", "z"]) {
-      var raw = this.__jsonld[attrib];
-      retVal[attrib] = raw !== undefined ? Number(raw) : 0.0;
-    }
-    return retVal;
+  get AxesValues():Number[]{
+    return ["x","y","z"].map( (axis:string):Number => {
+        const raw = this.ResourceProperty(axis);
+        if (raw == null) return 0.0;
+        const conv = Number(raw);
+        if (conv != null) return (conv as Number);
+        const msg = `RotateTransform.AxesValues | axis ${axis} not a number`;
+        throw new Error(msg);
+    })
   }
 
-  /**
-   * accessor Rotation is an object with x,y,z attributes whose values are
-   * a counter-clockwise rotation in degrees about the fixed coordinate
-   * system axes.
-   **/
-  get Rotation(): object {
-    return this.getRotation();
-  }
 }

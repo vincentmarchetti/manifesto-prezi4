@@ -6,14 +6,14 @@ export class ScaleTransform extends Transform {
     this.isScaleTransform = true;
   }
 
-  getScale(): object {
-    var retVal = {};
-    for (const attrib of ["x", "y", "z"]) {
-      var raw = this.__jsonld[attrib];
-
-      // note that default scaling is 1.0
-      retVal[attrib] = raw !== undefined ? Number(raw) : 1.0;
-    }
-    return retVal;
+  get AxesValues():Number[]{
+    return ["x","y","z"].map( (axis:string):Number => {
+        const raw = this.ResourceProperty(axis);
+        if (raw == null) return 0.0;
+        const conv = Number(raw);
+        if (conv != null) return (conv as Number);
+        const msg = `RotateTransform.AxesValues | axis ${axis} not a number`;
+        throw new Error(msg);
+    })
   }
 }

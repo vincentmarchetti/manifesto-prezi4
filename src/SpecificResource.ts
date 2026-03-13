@@ -3,8 +3,8 @@ import {
   JSONLDResource,
   ManifestResource,
   IResource,
-  Transform,
-  TransformParser
+  ResourceOps,
+  ITransform
 } from "./internal";
 
 /**
@@ -154,25 +154,23 @@ export class SpecificResource extends JSONLDResource {
   
 
   
-  get Transform(): Transform[] {
+  get Transform(): ITransform[] {
     
-    const transformItems : unknown = this.getProperty("transform");
-    if (transformItems  == null) return ([] as Transform[]);
-    
-     
-    if (!Array.isArray(transformItems)){
-        throw new Error("SpecificResource.getTransform: manifest transform property not an array");
+    const transformItems : IResource[] | null = ResourceOps.cast_to_arraythis(ResourceProperty("transform"));
+    if (transformItems  == null){
+        const msg = `SpecificResource.Transform | cannot parse "transform" property`;
+        thrown new Error(msg);
     }
     
-    return transformItems.map( (transformItem:unknown, index:number ):Transform => {
+    return transformItems.map( (transformItem:IResource, index:number ):ITransform => {
     
         try{
-            if (!( typeof transformItem == 'object' && !Array.isArray(transformItem) && transformItem != null))
-                throw new Error(` invalid json data`);
-            return TransformParser.BuildFromJson(transformItem as object);
+            const tmp = JSONLDResource.Construct(transformItem );
+            if (!tmp.isTransform) throw new Error(`not a ITransform instance`);
+            return (tmp as ITransform);
         }
         catch (error){
-            const msg = 'SpecificResource.Transform invalid element at index ${index} : ${error}';
+            const msg = 'SpecificResource.Transform | map | invalid element at index ${index} : ${error}';
             throw new Error(msg);
         }
     });

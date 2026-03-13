@@ -1,5 +1,4 @@
 import {
-  Transform,
   TranslateTransform,
   RotateTransform,
   ScaleTransform,
@@ -9,7 +8,7 @@ import {
 
 
 export class TransformParser {
-  static BuildFromJson(jsonld: object): Transform {
+  static BuildFromJson(jsonld: object): ITransform {
   
     const constructors = {
         "TranslateTransform" : TranslateTransform,
