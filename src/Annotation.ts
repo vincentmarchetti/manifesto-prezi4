@@ -12,6 +12,8 @@ export class Annotation extends ManifestResource {
     super(jsonld, options);
   }
 
+  isAnnotation:boolean = true;
+  
   /**
   In spite of its name, this method returns an array of objects, each of which
   represents a potential body annotations
