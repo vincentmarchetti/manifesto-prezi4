@@ -1,8 +1,6 @@
 var expect = require('chai').expect;
-var should = require('chai').should();
 var manifesto = require('../../../dist-commonjs/');
-var ExternalResourceType = require('@iiif/vocabulary/dist-commonjs/').ExternalResourceType;
-var MediaType = require('@iiif/vocabulary/dist-commonjs/').MediaType;
+
 
 const fs = require('node:fs');
 
@@ -69,9 +67,9 @@ describe('model_origin_bgcolor', function() {
     it('with a defined background color', function(){
         var backgroundColor = scene.BackgroundColor;
         expect(backgroundColor).to.exist;
-        backgroundColor.red.should.equal(255);
-        backgroundColor.green.should.equal(0);
-        backgroundColor.blue.should.equal(254);
+        expect(backgroundColor.red).to.equal(255);
+        expect(backgroundColor.green).to.equal(0);
+        expect(backgroundColor.blue).to.equal(254);
     });
 });
 

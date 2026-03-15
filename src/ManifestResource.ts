@@ -157,10 +157,6 @@ export class ManifestResource extends JSONLDResource {
     return null;
   }
 
-  isAnnotation(): boolean {
-    return this.getIIIFResourceType() === IIIFResourceType.ANNOTATION;
-  }
-
   isCanvas(): boolean {
     return false;
   }
