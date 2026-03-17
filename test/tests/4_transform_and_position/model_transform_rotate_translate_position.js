@@ -35,6 +35,7 @@ describe('model_transform_rotate_translate_position.json', function() {
         
         let specific_resource = null;
         let transforms = null;
+        let model = null;
          
         it("is a SpecificResource", function(){
             if (body == null) this.skip();
@@ -48,6 +49,18 @@ describe('model_transform_rotate_translate_position.json', function() {
             expect(transforms).to.be.an('array');
             expect(transforms).to.have.lengthOf(2);
         });
+        
+        it('with no selector', function(){
+            if (specific_resource == null ) this.skip();
+            selector = specific_resource.Selector;
+            expect(selector).to.equal(null);
+        });
+        it('source is a model', function(){
+            if (specific_resource == null ) this.skip();
+            model = specific_resource.Source;
+            expect(model).to.exist;
+            expect(model.isModel).to.equal(true);
+        });
     });
     
     it('target loads from annotation', function(){
@@ -56,6 +69,17 @@ describe('model_transform_rotate_translate_position.json', function() {
         expect(target).to.exist;
     });
 
-    
+    describe("target resource", function(){
+        let specific_resource = null;
+        let source = null;
+ 
+        it("is a SpecificResource", function(){
+            if (target == null) this.skip();
+            expect(target.isSpecificResource).to.equal(true);
+            specific_resource = target;
+        });
+       
+        
+    });
     
 });
