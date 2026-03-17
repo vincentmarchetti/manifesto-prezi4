@@ -65,10 +65,10 @@ This definition adds an extra argument options not used by JSONLResource ctor
 The justification is that Javascript does not care about extra arguments 
  */
 type JSONLDResourceConstructor = {
-    new (res : IResource, options?:IManifestoOptions):JSONLDResource;
+    new (res : IResource, options?:IManifestoOptions | null ):JSONLDResource;
 };
 
-JSONLDResource.Construct = (jsonld: IResource, options?:IManifestoOptions):JSONLDResource => {
+JSONLDResource.Construct = (jsonld: IResource, options?:IManifestoOptions | null):JSONLDResource => {
     // Developer Note 20260305 double checking, avoid truly mysterious failures
     // this should never happen if TypeScript based type-checking
     // is being properly used
