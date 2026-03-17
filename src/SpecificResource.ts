@@ -46,28 +46,42 @@ export class SpecificResource extends JSONLDResource {
 
   get Source(): JSONLDResource {
     
-    const sourceres: unknown = this.ResourceProperty("source");
-    if (sourceres == null)
+    const res: unknown = this.ResourceProperty("source");
+    if (res == null)
         throw new Error(`SpecificResource.Source | null value`);
-    if (typeof sourceres == 'string')
+    if (typeof res == 'string')
         throw new Error(`SpecificResource.Source | string value`);
-    const sourceires: IResource | null = ResourceOps.cast_to_resource(sourceres);
-    if ( sourceires == null){
-        const msg = `SpecificResource.Source | unsupport json value ${typeof sourceres}`;
+    const ires: IResource | null = ResourceOps.cast_to_resource(res);
+    if ( ires == null){
+        const msg = `SpecificResource.Source | unsupport json value ${typeof res}`;
         throw new Error(msg);
     }
     try{
-        return JSONLDResource.Construct(sourceires, this.options ?? undefined );
+        return JSONLDResource.Construct(ires, this.options ?? undefined );
     }
     catch (error ){
-        const msg: string = `SpecificResource.Source | unsupported resource type ${sourceires.type}`;
+        const msg: string = `SpecificResource.Source | unsupported resource type ${ires.type}`;
         throw new Error(msg);
     }
   }
 
   get Selector(): JSONLDResource | null {
-    const msg = `SpecificResource.Selector | not implemented`;
-    throw new Error(msg);
+    
+    const res: unknown = this.ResourceProperty("selector");
+    if (res == null) return null;
+
+    const ires: IResource | null = ResourceOps.cast_to_resource(res);
+    if ( ires == null){
+        const msg = `SpecificResource.Selector | unsupport json value ${typeof res}`;
+        throw new Error(msg);
+    }
+    try{
+        return JSONLDResource.Construct(ires, this.options ?? undefined );
+    }
+    catch (error ){
+        const msg: string = `SpecificResource.Selector | unsupported resource type ${ires.type}`;
+        throw new Error(msg);
+    }
   }
   
 
