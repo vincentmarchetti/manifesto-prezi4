@@ -1,7 +1,6 @@
 import {
   IManifestoOptions,
   JSONLDResource,
-  ManifestResource,
   IResource,
   ResourceOps,
   ITransform
@@ -31,125 +30,44 @@ export class SpecificResource extends JSONLDResource {
   */
   isSpecificResource: boolean = true;
 
-  options : IManifestoOptions | null = null;
+  options : IManifestoOptions | null;
   
-  constructor(jsonld: IResource, options?: IManifestoOptions) {    
+  constructor(jsonld: IResource, options?: IManifestoOptions | null) {    
     super(jsonld);
     this.options = options ?? null; // saving to use to pass on to the Source object
   }
 
-  /*
-  getScope(): object | Annotation | null {
-    var raw = this.getPropertyAsObject("scope");
-    if (raw?.isIRI) return raw;
 
-    if (raw) {
-      const scope = [].concat(raw)[0];
-      if (scope && scope["type"] === "Annotation")
-        return new Annotation(scope, this.options);
-    }
-
-    return null;
+  get Scope(): JSONLDResource | null {
+    throw new Error(`SpecificResource.Scope | unimplemented`);
   }
-  */
 
-  /*
-  getSource(): ManifestResource {
-    var raw = this.getPropertyAsObject("source");
-    if (raw.isIRI) return raw;
 
+
+  get Source(): JSONLDResource {
     
-  	    this logic gets a little convoluted, because we have to preserve
-  	    the cases where the raw json is an array for the sources of a
-  	    SpecificResource applied to an annotation body, while for a target
-  	    of an Annotation we just want a single object
-  	
-    // case of a source of a SpecificResource which is an Annotation target
-    if (raw) {
-      var containerTypes = ["Scene", "Canvas"];
-      let singleItem = [].concat(raw)[0];
-      if (containerTypes.includes(singleItem["type"])) return singleItem;
+    const sourceres: unknown = this.ResourceProperty("source");
+    if (sourceres == null)
+        throw new Error(`SpecificResource.Source | null value`);
+    if (typeof sourceres == 'string')
+        throw new Error(`SpecificResource.Source | string value`);
+    const sourceires: IResource | null = ResourceOps.cast_to_resource(sourceres);
+    if ( sourceires == null){
+        const msg = `SpecificResource.Source | unsupport json value ${typeof sourceres}`;
+        throw new Error(msg);
     }
-    if (raw) {
-      var item = [].concat(raw)[0];
-      if (item) {
-        return AnnotationBodyParser.BuildFromJson(item, this.options);
-      }
+    try{
+        return JSONLDResource.Construct(sourceires, this.options ?? undefined );
     }
-    throw new Error("cannot resolve Source " + JSON.stringify(raw));
-  }
-  */
-
-  get Source(): ManifestResource | null {
-    const msg = `SpecificResource.Source | not implemented`;
-    console.log(msg);
-    return null;
-    /*
-    var raw = this.getPropertyAsObject("source");
-    if (raw.isIRI) return raw;
-
-    
-  	    this logic gets a little convoluted, because we have to preserve
-  	    the cases where the raw json is an array for the sources of a
-  	    SpecificResource applied to an annotation body, while for a target
-  	    of an Annotation we just want a single object
-  	
-    // case of a source of a SpecificResource which is an Annotation target
-    if (raw) {
-      var containerTypes = ["Scene", "Canvas"];
-      let singleItem = [].concat(raw)[0];
-      if (containerTypes.includes(singleItem["type"])) return singleItem;
+    catch (error ){
+        const msg: string = `SpecificResource.Source | unsupported resource type ${sourceires.type}`;
+        throw new Error(msg);
     }
-    if (raw) {
-      var item = [].concat(raw)[0];
-      if (item) {
-        return AnnotationBodyParser.BuildFromJson(item, this.options);
-      }
-    }
-    throw new Error("cannot resolve Source " + JSON.stringify(raw));
-    */
   }
 
   get Selector(): JSONLDResource | null {
-    const msg = `SpecificResource | not implemented`;
-    console.log(msg);
-    return null;
-    /*
-    const propValue:unknown = this.getProperty("selector");
-
-    const raw : object | null = ( (pv:unknown):object|null => {
-        // also will not be an Array
-        // if passed a an Array will return the first item in Array as return value
-        let sv = pv;    // this will be converted to singleton if nec.
-        if (Array.isArray(pv)){
-            const ln = pv.length;
-            if (ln == 0) return null;
-            if (ln > 1)
-                console.warn("multiple resources in SpecificResource.Selector");
-            sv = pv[0];
-        }
-        // Dev note 20260301 : code inside the negation is the 
-        // practical Javascript runtime test that something (e.g. sv ) is
-        // an object but not null and not an array ( see 
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
-
-        if (! (typeof sv === 'object') && sv != null && !Array.isArray(sv)){
-            const msg = `SpecificResource.Selector: invalid raw value ${sv}`;
-            throw new Error(msg);
-        }
-        return sv as object;
-    })(propValue);
-    
-    if (raw == null) return null;
-    
-    const visibleType = raw["type"];
-    if (visibleType === "PointSelector")
-        return new PointSelector(raw as object);
-    else{
-        const msg = `SpecificResource.Selector invalid type: ${visibleType}`;
-        throw new Error(msg);
-    }
-    */
+    const msg = `SpecificResource.Selector | not implemented`;
+    throw new Error(msg);
   }
   
 
