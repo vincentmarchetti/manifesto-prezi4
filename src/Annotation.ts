@@ -1,4 +1,4 @@
-import { AnnotationMotivation } from "@iiif/vocabulary/dist-commonjs";
+import { AnnotationMotivation } from "@iiif/vocabulary/dist-commonjs/index.js";
 import {
   IManifestoOptions,
   ManifestResource,

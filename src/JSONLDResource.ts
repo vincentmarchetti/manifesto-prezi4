@@ -1,5 +1,5 @@
-import {IResource} from "./IResource"; 
-import {IManifestoOptions} from "./IManifestoOptions";
+import {IResource} from "./IResource.js"; 
+import {IManifestoOptions} from "./IManifestoOptions.js";
 
 export class JSONLDResource {
   context: string;

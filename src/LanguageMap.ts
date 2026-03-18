@@ -1,5 +1,5 @@
-import { PropertyValue } from "./PropertyValue";
-import Language from "./Language";
+import { PropertyValue } from "./PropertyValue.js";
+import Language from "./Language.js";
 
 /** @deprecated Use PropertyValue instead */
 export class LanguageMap extends Array<Language> {

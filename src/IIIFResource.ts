@@ -12,7 +12,7 @@ import {
 import {
   IIIFResourceType,
   ServiceProfile,
-} from "@iiif/vocabulary/dist-commonjs";
+} from "@iiif/vocabulary/dist-commonjs/index.js";
 
 export class IIIFResource extends ManifestResource {
   public defaultTree: TreeNode;

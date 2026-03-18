@@ -1,5 +1,5 @@
-import Language from "./Language";
-import { Utils } from "./Utils";
+import Language from "./Language.js";
+import { Utils } from "./Utils.js";
 
 /** Utility class to hold one or more values with their associated (optional) locale */
 export class LocalizedValue implements Language {

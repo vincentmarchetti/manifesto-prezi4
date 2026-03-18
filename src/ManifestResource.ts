@@ -13,7 +13,7 @@ import {
   ServiceProfile,
   RenderingFormat,
   IIIFResourceType,
-} from "@iiif/vocabulary/dist-commonjs";
+} from "@iiif/vocabulary/dist-commonjs/index.js";
 
 export class ManifestResource extends JSONLDResource {
   externalResource: IExternalResource;

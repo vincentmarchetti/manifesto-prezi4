@@ -10,7 +10,7 @@ import {
   Behavior,
   ViewingDirection,
   ViewingHint,
-} from "@iiif/vocabulary/dist-commonjs";
+} from "@iiif/vocabulary/dist-commonjs/index.js";
 
 export class Range extends ManifestResource {
   private _ranges: Range[] | null = null;

@@ -2,7 +2,7 @@ import {
   Behavior,
   ViewingDirection,
   ViewingHint,
-} from "@iiif/vocabulary/dist-commonjs";
+} from "@iiif/vocabulary/dist-commonjs/index.js";
 import {
   IIIFResource,
   IManifestoOptions,

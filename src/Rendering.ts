@@ -1,4 +1,4 @@
-import { RenderingFormat } from "@iiif/vocabulary/dist-commonjs";
+import { RenderingFormat } from "@iiif/vocabulary/dist-commonjs/index.js";
 import { IManifestoOptions, ManifestResource } from "./internal.js";
 
 export class Rendering extends ManifestResource {

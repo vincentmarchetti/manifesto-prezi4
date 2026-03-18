@@ -3,7 +3,7 @@ import {
   Behavior,
   ViewingDirection,
   ServiceProfile,
-} from "@iiif/vocabulary/dist-commonjs";
+} from "@iiif/vocabulary/dist-commonjs/index.js";
 import {
   IManifestoOptions,
   IIIFResource,

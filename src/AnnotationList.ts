@@ -1,4 +1,4 @@
-import { IIIFResourceType } from "@iiif/vocabulary/dist-commonjs";
+import { IIIFResourceType } from "@iiif/vocabulary/dist-commonjs/index.js";
 import {
   Annotation,
   IManifestoOptions,

@@ -1,8 +1,8 @@
 export * from "./internal.js";
 
 
-import { IManifestoOptions } from "./IManifestoOptions";
-import { Utils } from "./Utils";
+import { IManifestoOptions } from "./IManifestoOptions.js";
+import { Utils } from "./Utils.js";
 
 import {    TranslateTransform,
             RotateTransform,

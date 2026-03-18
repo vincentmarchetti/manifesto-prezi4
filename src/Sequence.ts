@@ -1,4 +1,4 @@
-import { ViewingDirection, ViewingHint } from "@iiif/vocabulary/dist-commonjs";
+import { ViewingDirection, ViewingHint } from "@iiif/vocabulary/dist-commonjs/index.js";
 import {
   IManifestoOptions,
   Manifest,

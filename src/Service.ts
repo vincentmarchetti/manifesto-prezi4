@@ -1,4 +1,4 @@
-import { ServiceProfile } from "@iiif/vocabulary/dist-commonjs";
+import { ServiceProfile } from "@iiif/vocabulary/dist-commonjs/index.js";
 import { IManifestoOptions, ManifestResource, Utils } from "./internal.js";
 
 export class Service extends ManifestResource {

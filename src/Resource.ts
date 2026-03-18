@@ -1,7 +1,7 @@
 import {
   ExternalResourceType,
   MediaType,
-} from "@iiif/vocabulary/dist-commonjs";
+} from "@iiif/vocabulary/dist-commonjs/index.js";
 import {
   Annotation,
   IManifestoOptions,

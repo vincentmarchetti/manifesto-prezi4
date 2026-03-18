@@ -1,4 +1,4 @@
-import { ViewingHint } from "@iiif/vocabulary/dist-commonjs";
+import { ViewingHint } from "@iiif/vocabulary/dist-commonjs/index.js";
 import { Canvas } from "./internal.js";
 
 // todo: deprecate
