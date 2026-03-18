@@ -21,10 +21,7 @@
   "devDependencies": {
     "@types/node": "^25.0.3",
     "chai": "^6.2.2",
-    "finalhandler": "^2.1.1",
-    "isomorphic-unfetch": "^4.0.2",
     "mocha": "^11.7.5",
-    "serve-static": "^2.2.1",
     "typedoc": "^0.28.16",
     "typescript": "^5.9.3"
   },
