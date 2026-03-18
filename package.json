@@ -19,7 +19,6 @@
     "test": "test"
   },
   "devDependencies": {
-    "@types/node": "^25.0.3",
     "chai": "^6.2.2",
     "mocha": "^11.7.5",
     "typedoc": "^0.28.16",
