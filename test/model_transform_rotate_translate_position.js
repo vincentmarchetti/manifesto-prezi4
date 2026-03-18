@@ -1,8 +1,8 @@
-var expect = require('chai').expect;
-var manifesto = require('../../../dist-commonjs/');
+import {expect} from "chai";
+import * as manifesto from "@kshell/manifesto-prezi4";
+import * as fs from "node:fs";
 
 
-const fs = require('node:fs');
 let annotation_data  = null;
  
 before(function(){
@@ -52,7 +52,7 @@ describe('model_transform_rotate_translate_position.json', function() {
         
         it('with no selector', function(){
             if (specific_resource == null ) this.skip();
-            selector = specific_resource.Selector;
+            const selector = specific_resource.Selector;
             expect(selector).to.equal(null);
         });
         it('source is a model', function(){
