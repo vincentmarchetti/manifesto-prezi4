@@ -1,10 +1,10 @@
 {
   "name": "@kshell/manifesto-prezi4",
-  "exports" : "./dist/index.js",
-  "main"    : "./dist/index.js",
+  "exports": "./dist/index.js",
+  "main": "./dist/index.js",
   "version": "1.0.0",
   "description": "IIIF Presentation API utility library for client and server with 3D extension",
-  "type" : "module",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "test": "npm run build && mocha test/*.mjs",
@@ -25,13 +25,12 @@
     "isomorphic-unfetch": "^4.0.2",
     "mocha": "^11.7.5",
     "serve-static": "^2.2.1",
-    "typescript": "^5.9.3",
-    "typedoc": "^0.28.16"
+    "typedoc": "^0.28.16",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@edsilv/http-status-codes": "^1.0.3",
     "@iiif/vocabulary": "^1.0.31",
-    "color-string": "1.9",
-    "lodash": "^4.17.21"
+    "color-string": "1.9"
   }
 }
