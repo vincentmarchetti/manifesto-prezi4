@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build && mocha test/*.mjs",
+    "test": "npm run build && mocha",
     "docs": "typedoc"
   },
   "keywords": [
