@@ -1,10 +1,13 @@
 {
   "name": "@kshell/manifesto-prezi4",
+  "exports" : "./dist/index.js",
+  "main"    : "./dist/index.js",
   "version": "1.0.0",
   "description": "IIIF Presentation API utility library for client and server with 3D extension",
+  "type" : "module",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build && mocha",
+    "test": "npm run build && mocha test/*.mjs",
     "docs": "typedoc"
   },
   "keywords": [

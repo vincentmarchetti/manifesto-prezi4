@@ -11,7 +11,7 @@ export * from "./SpecificResource.js";
 export * from "./Light.js";
 export * from "./Camera.js";
 export * from "./TextualBody.js";
-export * from "./AnnotationBodyParser.js";
+//export * from "./AnnotationBodyParser.js";
 export * from "./Annotation.js";
 
 export * from "./AnnotationList.js";

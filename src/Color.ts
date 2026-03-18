@@ -1,6 +1,7 @@
 //import { colorString } from "color-string"
 
-let colorString = require("color-string");
+import colorString  from "color-string";
+//const {colorString} = pkg;
 
 /**
  * class structure with red, green, blue values in 0-255 range
@@ -13,7 +14,7 @@ export class Color {
    * @returns Color instance.
    **/
   static fromCSS(cssTerm: string): Color {
-    var rv = colorString.get(cssTerm);
+    const rv = colorString.get(cssTerm);
     if (rv.model !== "rgb")
       throw new Error("unsupported color string: " + cssTerm);
     return new Color([rv.value[0], rv.value[1], rv.value[2]]);
