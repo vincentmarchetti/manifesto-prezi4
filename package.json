@@ -19,14 +19,14 @@
     "test": "test"
   },
   "devDependencies": {
-    "chai": "^6.2.2",
-    "mocha": "^11.7.5",
-    "typedoc": "^0.28.16",
-    "typescript": "^5.9.3"
+    "chai": "^6",
+    "mocha": "^11",
+    "typedoc": "^0",
+    "typescript": "^5"    
   },
   "dependencies": {
     "@edsilv/http-status-codes": "^1.0.3",
     "@iiif/vocabulary": "^1.0.31",
-    "color-string": "1.9"
+    "color-string": "1.9"    
   }
 }
