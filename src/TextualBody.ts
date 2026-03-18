@@ -2,7 +2,7 @@ import {
   IManifestoOptions,
   ManifestResource,
   SpecificResource,
-} from "./internal";
+} from "./internal.js";
 
 /**
 An implementation of the TextualBody class (class in JSON-LD sense)

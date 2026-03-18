@@ -1,4 +1,4 @@
-import { PropertyValue } from "./internal";
+import { PropertyValue } from "./internal.js";
 
 export class LabelValuePair {
   public label: PropertyValue | null;

@@ -4,7 +4,7 @@ import {
   IManifestoOptions,
   JSONLDResource,
   Utils,
-} from "./internal";
+} from "./internal.js";
 
 export class AnnotationList extends JSONLDResource {
   options: IManifestoOptions;

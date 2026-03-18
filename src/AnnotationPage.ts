@@ -3,7 +3,7 @@ import {    Annotation,
             JSONLDResource,
             ManifestResource,
             IResource,
-            ResourceOps } from "./internal";
+            ResourceOps } from "./internal.js";
 
 export class AnnotationPage extends ManifestResource {
   constructor(jsonld: IResource, options: IManifestoOptions) {

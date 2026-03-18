@@ -4,7 +4,7 @@ import {
   IResource,
   ResourceOps,
   ITransform
-} from "./internal";
+} from "./internal.js";
 
 /**
     Developer note: This implementation does not strictly adhere

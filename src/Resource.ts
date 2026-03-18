@@ -7,7 +7,7 @@ import {
   IManifestoOptions,
   ManifestResource,
   Utils,
-} from "./internal";
+} from "./internal.js";
 
 export class Resource extends ManifestResource {
   public index: number;

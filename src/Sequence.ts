@@ -4,7 +4,7 @@ import {
   Manifest,
   ManifestResource,
   Scene
-} from "./internal";
+} from "./internal.js";
 
 export class Sequence extends ManifestResource {
   public items: unknown[] = [];

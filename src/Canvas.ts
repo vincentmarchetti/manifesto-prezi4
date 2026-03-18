@@ -14,7 +14,7 @@ import {
   Service,
   Size,
   Utils,
-} from "./internal";
+} from "./internal.js";
 // @ts-ignore
 import flatten from "lodash/flatten";
 // @ts-ignore

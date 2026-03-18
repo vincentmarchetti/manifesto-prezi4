@@ -10,7 +10,7 @@ import {
   TreeNode,
   TreeNodeType,
   Utils,
-} from "./internal";
+} from "./internal.js";
 
 export class Collection extends IIIFResource {
   public items: IIIFResource[] = [];

@@ -3,7 +3,7 @@ import {
   ManifestResource,
   JSONLDResource,
   IResource
-} from "./internal";
+} from "./internal.js";
 
 export class Camera extends ManifestResource {
   constructor(jsonld: IResource, options?: IManifestoOptions) {

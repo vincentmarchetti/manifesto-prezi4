@@ -4,7 +4,7 @@ import {
   IResource,
   JSONLDResource,
   Color
-} from "./internal";
+} from "./internal.js";
 
 export class Light extends ManifestResource {
   constructor(jsonld: IResource, options?: IManifestoOptions) {

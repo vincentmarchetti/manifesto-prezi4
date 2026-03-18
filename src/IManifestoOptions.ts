@@ -1,4 +1,4 @@
-import { IIIFResource } from "./internal";
+import { IIIFResource } from "./internal.js";
 
 export interface IManifestoOptions {
   defaultLabel: string; // '-'

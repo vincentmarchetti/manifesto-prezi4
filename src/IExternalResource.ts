@@ -3,7 +3,7 @@ import {
   IExternalResourceData,
   IManifestoOptions,
   Service,
-} from "./internal";
+} from "./internal.js";
 
 export interface IExternalResource {
   authAPIVersion: number;

@@ -1,5 +1,5 @@
 import { ServiceProfile } from "@iiif/vocabulary/dist-commonjs";
-import { IManifestoOptions, ManifestResource, Utils } from "./internal";
+import { IManifestoOptions, ManifestResource, Utils } from "./internal.js";
 
 export class Service extends ManifestResource {
   constructor(jsonld?: any, options?: IManifestoOptions) {

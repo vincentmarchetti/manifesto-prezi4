@@ -1,5 +1,5 @@
 import { RenderingFormat } from "@iiif/vocabulary/dist-commonjs";
-import { IManifestoOptions, ManifestResource } from "./internal";
+import { IManifestoOptions, ManifestResource } from "./internal.js";
 
 export class Rendering extends ManifestResource {
   constructor(jsonld?: any, options?: IManifestoOptions) {

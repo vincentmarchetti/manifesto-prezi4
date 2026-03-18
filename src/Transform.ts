@@ -1,5 +1,5 @@
 import { JSONLDResource,
-         IResource } from "./internal";
+         IResource } from "./internal.js";
 
 
 export interface ITransform {

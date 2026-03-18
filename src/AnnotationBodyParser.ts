@@ -7,7 +7,7 @@ import {
   IResource,
   ManifestResource,
   ResourceOps  
-} from "./internal";
+} from "./internal.js";
 
 
 const BodyCtorDict = {

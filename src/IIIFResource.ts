@@ -8,7 +8,7 @@ import {
   Service,
   IManifestoOptions,
   Collection,
-} from "./internal";
+} from "./internal.js";
 import {
   IIIFResourceType,
   ServiceProfile,

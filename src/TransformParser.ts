@@ -2,7 +2,7 @@ import {
   TranslateTransform,
   RotateTransform,
   ScaleTransform,
-} from "./internal";
+} from "./internal.js";
 
 
 

@@ -8,7 +8,7 @@ import {
   Service,
   StatusCode,
   TreeNode,
-} from "./internal";
+} from "./internal.js";
 import {
   MediaType,
   ServiceProfile,

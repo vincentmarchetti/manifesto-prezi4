@@ -6,7 +6,7 @@ import {
   IManifestoOptions,
   ManifestResource,
   Color,
-} from "./internal";
+} from "./internal.js";
 // @ts-ignore
 import flattenDeep from "lodash/flattenDeep";
 

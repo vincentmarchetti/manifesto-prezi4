@@ -11,7 +11,7 @@ import {
   ScaleTransform,
   Transform,
   TranslateTransform,
-} from "./internal";
+} from "./internal.js";
 // https://ros2jsguy.github.io/threejs-math/index.html
 
 /**

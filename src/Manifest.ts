@@ -17,7 +17,7 @@ import {
   TreeNode,
   TreeNodeType,
   Utils,
-} from "./internal";
+} from "./internal.js";
 
 /**
  * @remarks Scenes are conveniently retrieved from a Manifest by iterating through

@@ -1,5 +1,5 @@
 
-import { IResource, IManifestoOptions, ManifestResource } from "./internal";
+import { IResource, IManifestoOptions, ManifestResource } from "./internal.js";
 
  
 /**

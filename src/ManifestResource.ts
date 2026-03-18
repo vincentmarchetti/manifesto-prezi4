@@ -8,7 +8,7 @@ import {
   PropertyValue,
   IManifestoOptions,
   IExternalResource,
-} from "./internal";
+} from "./internal.js";
 import {
   ServiceProfile,
   RenderingFormat,

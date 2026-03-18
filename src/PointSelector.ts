@@ -1,4 +1,4 @@
-import { JSONLDResource } from "./internal";
+import { JSONLDResource } from "./internal.js";
 
 import { Vector3 } from "threejs-math";
 

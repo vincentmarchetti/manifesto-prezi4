@@ -3,7 +3,7 @@ import {
   IIIFResource,
   IManifestoOptions,
   Manifest,
-} from "./internal";
+} from "./internal.js";
 
 export class Deserialiser {
   static parse(

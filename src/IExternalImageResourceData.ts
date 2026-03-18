@@ -1,4 +1,4 @@
-import { IExternalResourceData } from "./internal";
+import { IExternalResourceData } from "./internal.js";
 
 export interface IExternalImageResourceData extends IExternalResourceData {
   width: number;

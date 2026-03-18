@@ -5,7 +5,7 @@ import {
   TreeNode,
   TreeNodeType,
   Utils,
-} from "./internal";
+} from "./internal.js";
 import {
   Behavior,
   ViewingDirection,

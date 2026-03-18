@@ -1,5 +1,5 @@
 import { ViewingHint } from "@iiif/vocabulary/dist-commonjs";
-import { Canvas } from "./internal";
+import { Canvas } from "./internal.js";
 
 // todo: deprecate
 // this is used by Sequence.getThumbs

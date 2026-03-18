@@ -12,7 +12,7 @@ import {
   Utils,
   combineTransformsToMatrix,
   combineTransformsToTRS,
-} from "./internal";
+} from "./internal.js";
 import { Matrix4 } from "threejs-math";
 
 /**

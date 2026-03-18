@@ -1,4 +1,4 @@
-export * from "./internal";
+export * from "./internal.js";
 
 
 import { IManifestoOptions } from "./IManifestoOptions";
@@ -20,7 +20,7 @@ import {    TranslateTransform,
             PointSelector,
             JSONLDResource,
             IResource,
-            ResourceOps } from "./internal";
+            ResourceOps } from "./internal.js";
 /**
 Initiates downloading an IIIF manifest json file from URL. Returns a Promise<any>
 to allow subsequent processing on a successful fetch. 
