@@ -1,11 +1,8 @@
 import { AnnotationMotivation } from "@iiif/vocabulary/dist-commonjs/index.js";
-import {
-  IManifestoOptions,
-  ManifestResource,
-  JSONLDResource,
-  IResource,
-  ResourceOps,
-} from "./internal.js";
+import { IManifestoOptions } from "./IManifestoOptions.js";
+import { ManifestResource }  from "./ManifestResource.js";
+import { JSONLDResource   }  from "./JSONLDResource.js";
+import { IResource, ResourceOps} from "./IResource.js";
 
 export class Annotation extends ManifestResource {
   constructor(jsonld: IResource, options: IManifestoOptions) {
@@ -50,17 +47,20 @@ export class Annotation extends ManifestResource {
   }
 
   
-  getMotivation(): AnnotationMotivation | null {
-    const motivation: string = this.getProperty("motivation");
-
-    if (motivation) {
-      //const key: string | undefined = Object.keys(AnnotationMotivationEnum).find(k => AnnotationMotivationEnum[k] === motivation);
-      return motivation as AnnotationMotivation;
+  get Motivation(): string[] {
+    const prop:unknown = this.ResourceProperty("motivation");
+    if (prop == null ) return ([] as string[]);
+    if (typeof prop === 'string') return [prop];
+    if (Array.isArray(prop)){
+        return prop.map( (v:unknown, index:number):string => {
+            if (typeof v === "string") return (v as string);
+            const msg = `Annotation.Motivate | map | at index ${index} not a string`;
+            throw new Error(msg);
+        });
     }
-
-    return null;
+    const msg:string = `Annotation.Motivate | argument type ${typeof prop} invalid`;
+    throw new Error(msg);
   }
-
 
   get Target(): any {
      try{

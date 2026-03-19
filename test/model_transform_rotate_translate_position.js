@@ -72,13 +72,31 @@ describe('model_transform_rotate_translate_position.json', function() {
     describe("target resource", function(){
         let specific_resource = null;
         let source = null;
+        let point_selector = null;
  
         it("is a SpecificResource", function(){
             if (target == null) this.skip();
             expect(target.isSpecificResource).to.equal(true);
             specific_resource = target;
         });
+        
+        it("with a PointSelector", function(){
+            if (specific_resource == null) this.skip();
+            const ps = specific_resource.Selector;
+            expect(ps.isPointSelector).to.equal(true);
+            point_selector = ps;
+        });
+        
+        it("with coordinates", function(){
+            const coordinates = point_selector.AxesValues;
+            expect(coordinates).to.be.an('array');
+            expect(coordinates).to.have.lengthOf(3);
+        });
        
+        it("and Scene as source", function(){
+            const scene = specific_resource.Source;
+            expect(scene.isScene).to.equal(true);
+        })
         
     });
     
