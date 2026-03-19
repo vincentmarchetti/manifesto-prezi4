@@ -57,12 +57,10 @@ export class Manifest extends IIIFResource {
 
   /** @deprecated Use getAccompanyingCanvas instead */
   getPosterCanvas(): unknown {
-    console.log(`Manifest.getPosterCanvas | not implemented`);
     return null;
   }
 
   getAccompanyingCanvas(): unknown {
-    console.log(`Manifest.getAccompanyingCanvas | not implemented`);
     return null;
   }
 
@@ -185,7 +183,6 @@ export class Manifest extends IIIFResource {
     }
 
     if (!r) {
-      console.warn("Range:", id, "does not exist");
       return;
     }
 

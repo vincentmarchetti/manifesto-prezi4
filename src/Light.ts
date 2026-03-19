@@ -13,7 +13,6 @@ export class Light extends ManifestResource {
 
 
   get Color(): Color | null {
-    console.log(`Light.Color not implemented`);
     return null;
     /*
     var hexColor = this.getPropertyFromSelfOrSource("color");
@@ -54,7 +53,6 @@ export class Light extends ManifestResource {
  */
  
   get Intensity(): number | null {
-    console.log(`Light.Intensity | not implemented`);
     return null;
     /*
     var intObject = this.getPropertyFromSelfOrSource("intensity");
@@ -91,7 +89,6 @@ export class Light extends ManifestResource {
   **/
   
   get Angle(): number | null {
-    console.log(`Light.Angle | not implemented`);
     return null;
     /*
     if (this.isSpotLight()) {
@@ -125,7 +122,6 @@ export class Light extends ManifestResource {
   */
   
   get LookAt(): JSONLDResource | null {
-    console.log('Light.LookAt | not implemented');
     return null;
     /*
     let rawObj = this.getPropertyAsObject("lookAt") ?? null;

@@ -55,7 +55,7 @@ export class Camera extends ManifestResource {
   
   get LookAt(): JSONLDResource | null {
     // TODO add identifying and parsing
-    console.log(`Camera.LookAt not yet implemented`)
+    
     return null;
   }
 

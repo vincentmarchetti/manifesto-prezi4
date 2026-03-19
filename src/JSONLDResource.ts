@@ -33,7 +33,6 @@ export class JSONLDResource {
     if (rv == null) return null;
     if (typeof rv != "string"){
         const msg =`JSONLDResource.ResourceId | json id value not a string`;
-        console.info(msg);
         return null;
     }
     return rv as string;

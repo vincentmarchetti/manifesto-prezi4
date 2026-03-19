@@ -19,7 +19,7 @@ import {
   MOVED_TEMPORARILY,
   UNAUTHORIZED,
 } from "@edsilv/http-status-codes/dist-commonjs/index.js";
-import "isomorphic-unfetch";
+//import "isomorphic-unfetch";
 
 export class Utils {
   static getMediaType(type: string): MediaType {

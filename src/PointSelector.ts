@@ -1,25 +1,24 @@
-import { JSONLDResource } from "./internal.js";
+import { JSONLDResource } from "./JSONLDResource.js"
+import { IResource      } from "./IResource.js";
 
-import { Vector3 } from "threejs-math";
-
+ 
 export class PointSelector extends JSONLDResource {
   isPointSelector: boolean = true;
 
-  constructor(jsonld: any) {
+  constructor(jsonld: IResource ) {
     super(jsonld);
   }
 
-  /**
-  @returns the 3D coordinates of the point as a Vector3 instance.
-  **/
-  getLocation(): Vector3 {
-    return new Vector3(this.__jsonld.x, this.__jsonld.y, this.__jsonld.z);
-  }
-
-  /**
-  @returns the 3D coordinates of the point as a Vector3 instance.
-  **/
-  get Location(): Vector3 {
-    return this.getLocation();
+  get AxesValues():Number[]{
+    return ["x","y","z"].map( (axis:string):Number => {
+        const raw = this.ResourceProperty(axis);
+        if (raw == null) return 0.0;
+        const conv = Number(raw);
+        if (conv == null){
+            const msg = `PointSelector.AxesValues | axis ${axis} not a number`;
+            throw new Error(msg);
+        }
+        return (conv as Number);
+    });
   }
 }

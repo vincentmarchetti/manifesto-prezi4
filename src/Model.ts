@@ -24,7 +24,6 @@ export class Model extends ManifestResource {
     if (rv == null) return null;
     if (typeof rv === 'string') return rv;
     const msg = `Model.Format | invalid type ${typeof rv}`;
-    console.log(msg);
     return null;
   }
 
