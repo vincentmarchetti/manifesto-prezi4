@@ -45,7 +45,7 @@ export class RotateTransform extends TransformBase implements ITransform {
     super(jsonld);
   }
 
-  RotateTransform:boolean = true;
+  isRotateTransform:boolean = true;
 
   get AxesValues():Number[]{
     return this.AxesValuesBase(0.0);
