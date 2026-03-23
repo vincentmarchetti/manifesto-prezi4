@@ -1,5 +1,6 @@
 import { JSONLDResource } from "./JSONLDResource.js"
 import { IResource      } from "./IResource.js";
+import { AxesValues     } from "./Transform.js";
 
  
 export class PointSelector extends JSONLDResource {
@@ -9,16 +10,16 @@ export class PointSelector extends JSONLDResource {
     super(jsonld);
   }
 
-  get AxesValues():Number[]{
+  get Components(): AxesValues {
     return ["x","y","z"].map( (axis:string):Number => {
         const raw = this.ResourceProperty(axis);
-        if (raw == null) return 0.0;
+        if (raw == null) return 0.0; 
         const conv = Number(raw);
         if (conv == null){
             const msg = `PointSelector.AxesValues | axis ${axis} not a number`;
             throw new Error(msg);
         }
         return (conv as Number);
-    });
+    })  as AxesValues; 
   }
 }
