@@ -2,10 +2,11 @@ import { JSONLDResource,
          IResource } from "./internal.js";
 
 
-export interface ITransform {
-    AxesValues: Number[];
-    isTransform : boolean;
-}
+export type AxesValues = [number,number,number];
+
+export interface ITransform{
+    Components : AxesValues;
+};
 
 abstract class TransformBase extends JSONLDResource {
   constructor(jsonld: IResource) {
@@ -14,7 +15,7 @@ abstract class TransformBase extends JSONLDResource {
   
   isTransform : boolean = true;
   
-  AxesValuesBase( defaultValue: Number ){
+  ComponentsBase( defaultValue: number ): AxesValues {
     return ["x","y","z"].map( (axis:string):Number => {
         const raw = this.ResourceProperty(axis);
         if (raw == null) return defaultValue;
@@ -24,7 +25,7 @@ abstract class TransformBase extends JSONLDResource {
             throw new Error(msg);
         }
         return (conv as Number);
-    });
+    }) as AxesValues;
   }
   
 }
@@ -35,8 +36,8 @@ export class TranslateTransform extends TransformBase implements ITransform {
   
   isTranslateTransform = true;
 
-  get AxesValues():Number[]{
-    return this.AxesValuesBase(0.0);
+  get Components(): AxesValues {
+    return this.ComponentsBase(0.0);
   }
 }
 
@@ -47,9 +48,10 @@ export class RotateTransform extends TransformBase implements ITransform {
 
   isRotateTransform:boolean = true;
 
-  get AxesValues():Number[]{
-    return this.AxesValuesBase(0.0);
+  get Components(): AxesValues {
+    return this.ComponentsBase(0.0);
   }
+
 }
 
 export class ScaleTransform extends TransformBase implements ITransform {
@@ -59,7 +61,8 @@ export class ScaleTransform extends TransformBase implements ITransform {
   
   isScaleTransform:boolean = true;
   
-  get AxesValues():Number[]{
-    return this.AxesValuesBase(0.0);
+  get Components(): AxesValues {
+    return this.ComponentsBase(1.0);
   }
+
 }
