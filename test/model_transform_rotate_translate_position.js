@@ -88,7 +88,7 @@ describe('model_transform_rotate_translate_position.json', function() {
         });
         
         it("with coordinates", function(){
-            const coordinates = point_selector.AxesValues;
+            const coordinates = point_selector.Components;
             expect(coordinates).to.be.an('array');
             expect(coordinates).to.have.lengthOf(3);
         });
