@@ -1,6 +1,7 @@
 import {
   IManifestoOptions,
   JSONLDResource,
+  ManifestResource,
   IResource,
   ResourceOps,
   ITransform
@@ -16,20 +17,11 @@ import {
     an extension of SpecificResource beyond the web annotation model.
 */
 export class SpecificResource extends JSONLDResource {
-  /*
-  property distinguishing instances of SpecificResource from instances of AnnotionBody.
-  The return type of the Annotation.getBody() method is an array of instances of the 
-  union type ( AnnotationBody | SpecificResource )
-  */
-  isAnnotationBody: boolean = false;
-
-  /*
-  property distinguishing instances of SpecificResource from instances of AnnotionBody.
-  The return type of the Annotation.getBody() method is an array of instances of the 
-  union type ( AnnotationBody | SpecificResource )
-  */
   isSpecificResource: boolean = true;
 
+  /* save the options instance for the purpose of 
+  instantiating the Source resource
+  */
   options : IManifestoOptions | null;
   
   constructor(jsonld: IResource, options?: IManifestoOptions | null) {    
@@ -44,7 +36,7 @@ export class SpecificResource extends JSONLDResource {
 
 
 
-  get Source(): JSONLDResource {
+  get Source(): ManifestResource {
     
     const res: unknown = this.ResourceProperty("source");
     if (res == null)
@@ -57,7 +49,7 @@ export class SpecificResource extends JSONLDResource {
         throw new Error(msg);
     }
     try{
-        return JSONLDResource.Construct(ires, this.options ?? undefined );
+        return JSONLDResource.Construct(ires, this.options ?? undefined ) as ManifestResource;
     }
     catch (error ){
         const msg: string = `SpecificResource.Source | unsupported resource type ${ires.type}`;
