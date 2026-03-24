@@ -22,7 +22,7 @@ export * from "./IResource.js";
 export * from "./LabelValuePair.js";
 export * from "./PropertyValue.js";
 export * from "./Manifest.js";
-export * from "./ManifestType.js";
+//export * from "./ManifestType.js";
 export * from "./Model.js";
 export * from "./PointSelector.js";
 export * from "./Range.js";

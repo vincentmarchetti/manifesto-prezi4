@@ -11,7 +11,6 @@ import {
   JSONLDResource,
   ManifestResource,
   ResourceOps,
-  ManifestType,
   Range,
   Service,
   TreeNode,
