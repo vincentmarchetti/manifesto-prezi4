@@ -20,8 +20,6 @@ export * from "./IExternalResourceOptions.js";
 export * from "./IManifestoOptions.js";
 export * from "./IResource.js";
 export * from "./LabelValuePair.js";
-export * from "./Language.js";
-export * from "./LanguageMap.js";
 export * from "./PropertyValue.js";
 export * from "./Manifest.js";
 export * from "./ManifestType.js";
