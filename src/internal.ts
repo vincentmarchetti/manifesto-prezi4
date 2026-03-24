@@ -4,19 +4,12 @@ export * from "./ManifestResource.js";
 export * from "./Resource.js";
 export * from "./IIIFResource.js";
 export * from "./SpecificResource.js";
-//export * from "./SpecificResourceForTarget.js";
-//export * from "./SpecificResourceForBody.js";
-
-//export * from "./AnnotationBody.js";
 export * from "./Light.js";
 export * from "./Camera.js";
 export * from "./TextualBody.js";
-//export * from "./AnnotationBodyParser.js";
 export * from "./Annotation.js";
-
 export * from "./AnnotationList.js";
 export * from "./AnnotationPage.js";
-
 export * from "./Collection.js";
 export * from "./Duration.js";
 export * from "./IAccessToken.js";
@@ -40,14 +33,8 @@ export * from "./Scene.js";
 export * from "./Serialisation.js";
 export * from "./Service.js";
 export * from "./Size.js";
-
 export * from "./StatusCode.js";
-
 export * from "./Thumbnail.js";
-export * from "./Transform.js";
-
-
-
 export * from "./TreeNode.js";
 export * from "./TreeNodeType.js";
 export * from "./Utils.js";
