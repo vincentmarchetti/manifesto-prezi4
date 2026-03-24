@@ -8,7 +8,6 @@ import {
   Color,
 } from "./internal.js";
 // @ts-ignore
-import flattenDeep from "lodash/flattenDeep";
 
 export class Scene extends ManifestResource {
   constructor(jsonld: IResource, options: IManifestoOptions) {
