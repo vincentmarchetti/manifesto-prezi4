@@ -90,6 +90,7 @@ export class Utils {
     return type;
   }
 
+/* 
   static normaliseUrl(url: string): string {
     url = url.substr(url.indexOf("://"));
 
@@ -103,6 +104,7 @@ export class Utils {
   static normalisedUrlsMatch(url1: string, url2: string): boolean {
     return Utils.normaliseUrl(url1) === Utils.normaliseUrl(url2);
   }
+ */
 
 
   static getTemporalComponent(target: string): number[] | null {
