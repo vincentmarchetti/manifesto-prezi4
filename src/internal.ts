@@ -8,7 +8,7 @@ export * from "./Light.js";
 export * from "./Camera.js";
 export * from "./TextualBody.js";
 export * from "./Annotation.js";
-export * from "./AnnotationList.js";
+//export * from "./AnnotationList.js";
 export * from "./AnnotationPage.js";
 export * from "./Collection.js";
 export * from "./Duration.js";
