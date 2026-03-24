@@ -62,7 +62,8 @@ export class Utils {
     return null;
   }
 
-  static generateTreeNodeIds(treeNode: TreeNode, index: number = 0): void {
+  /* 
+static generateTreeNodeIds(treeNode: TreeNode, index: number = 0): void {
     let id: string;
 
     if (!treeNode.parentNode) {
@@ -78,6 +79,7 @@ export class Utils {
       Utils.generateTreeNodeIds(n, i);
     }
   }
+ */
 
 /* 
   static normaliseType(type: string): string {

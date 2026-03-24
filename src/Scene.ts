@@ -15,6 +15,7 @@ export class Scene extends ManifestResource {
     super(jsonld, options);
   }
 
+  isScene : boolean = true;
 
   get BackgroundColor(): Color | null {
     // regular expression intended to match strings like
