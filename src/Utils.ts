@@ -90,22 +90,8 @@ export class Utils {
     return type;
   }
 
+
 /* 
-  static normaliseUrl(url: string): string {
-    url = url.substr(url.indexOf("://"));
-
-    if (url.indexOf("#") !== -1) {
-      url = url.split("#")[0];
-    }
-
-    return url;
-  }
-
-  static normalisedUrlsMatch(url1: string, url2: string): boolean {
-    return Utils.normaliseUrl(url1) === Utils.normaliseUrl(url2);
-  }
- */
-
 
   static getTemporalComponent(target: string): number[] | null {
     const temporal: RegExpExecArray | null = /t=([^&]+)/g.exec(target);
@@ -117,4 +103,5 @@ export class Utils {
 
     return t;
   }
+ */
 }

@@ -34,7 +34,8 @@ export class Range extends ManifestResource {
     return [];
   }
 
-  getDuration(): Duration | undefined {
+  /* 
+getDuration(): Duration | undefined {
     // For this implementation, we want to catch SOME of the temporal cases - i.e. when there is a t=1,100
     if (this.canvases && this.canvases.length) {
       const startTimes: number[] = [];
@@ -131,6 +132,7 @@ export class Range extends ManifestResource {
 
     return undefined;
   }
+ */
 
   // getCanvases(): ICanvas[] {
   //     if (this._canvases) {
@@ -190,7 +192,8 @@ export class Range extends ManifestResource {
     return treeRoot;
   }
 
-  public spansTime(time: number): boolean {
+  /* 
+public spansTime(time: number): boolean {
     const duration: Duration | undefined = this.getDuration();
 
     if (duration) {
@@ -201,6 +204,7 @@ export class Range extends ManifestResource {
 
     return false;
   }
+ */
 
   private _parseTreeNode(node: TreeNode, range: Range): void {
     node.label = <string>range.getLabel().getValue(this.options.locale);
