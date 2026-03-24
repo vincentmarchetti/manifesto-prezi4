@@ -2,8 +2,7 @@ import { IIIFResourceType } from "@iiif/vocabulary/dist-commonjs/index.js";
 import {
   Annotation,
   IManifestoOptions,
-  JSONLDResource,
-  Utils,
+  JSONLDResource
 } from "./internal.js";
 
 export class AnnotationList extends JSONLDResource {

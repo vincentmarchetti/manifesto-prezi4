@@ -15,8 +15,7 @@ import {
   Range,
   Service,
   TreeNode,
-  TreeNodeType,
-  Utils,
+  TreeNodeType
 } from "./internal.js";
 
 /**

@@ -2,7 +2,6 @@ import {
   JSONLDResource,
   Thumbnail,
   Service,
-  Utils,
   Rendering,
   LabelValuePair,
   PropertyValue,

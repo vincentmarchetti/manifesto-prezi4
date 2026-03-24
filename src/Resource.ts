@@ -5,8 +5,7 @@ import {
 import {
   Annotation,
   IManifestoOptions,
-  ManifestResource,
-  Utils,
+  ManifestResource
 } from "./internal.js";
 
 export class Resource extends ManifestResource {

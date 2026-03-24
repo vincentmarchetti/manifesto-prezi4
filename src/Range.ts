@@ -3,8 +3,7 @@ import {
   IManifestoOptions,
   ManifestResource,
   TreeNode,
-  TreeNodeType,
-  Utils,
+  TreeNodeType
 } from "./internal.js";
 import {
   Behavior,

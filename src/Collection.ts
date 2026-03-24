@@ -8,8 +8,7 @@ import {
   IManifestoOptions,
   Manifest,
   TreeNode,
-  TreeNodeType,
-  Utils,
+  TreeNodeType
 } from "./internal.js";
 
 export class Collection extends IIIFResource {
