@@ -133,7 +133,8 @@ export class IIIFResource extends ManifestResource {
     return this.getProperty("seeAlso");
   }
 
-  getTrackingLabel(): string {
+  /* 
+getTrackingLabel(): string {
     const service: Service = <Service>(
       this.getService(ServiceProfile.TRACKING_EXTENSIONS)
     );
@@ -142,6 +143,7 @@ export class IIIFResource extends ManifestResource {
     }
     return "";
   }
+ */
 
   getDefaultTree(): TreeNode {
     this.defaultTree = new TreeNode("root");

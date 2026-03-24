@@ -285,7 +285,8 @@ export class Manifest extends IIIFResource {
   }
 
 
-  getManifestType(): ManifestType {
+ /* 
+ getManifestType(): ManifestType {
     const service: Service = <Service>(
       this.getService(ServiceProfile.UI_EXTENSIONS)
     );
@@ -294,6 +295,7 @@ export class Manifest extends IIIFResource {
     }
     return ManifestType.EMPTY;
   }
+ */
 
 
   isPagingEnabled(): boolean {

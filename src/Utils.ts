@@ -193,6 +193,7 @@ export class Utils {
  */
 
 
+/* 
   static getService(resource: any, profile: ServiceProfile): Service | null {
     const services: Service[] = this.getServices(resource);
 
@@ -206,7 +207,9 @@ export class Utils {
 
     return null;
   }
+ */
 
+/* 
   static getResourceById(
     parentResource: JSONLDResource,
     id: string
@@ -215,6 +218,7 @@ export class Utils {
       Utils.traverseAndFind(parentResource.__jsonld, "@id", id)
     );
   }
+ */
 
   /**
    * Does a depth first traversal of an Object, returning an Object that
@@ -243,6 +247,7 @@ export class Utils {
     return undefined;
   }
 
+/* 
   static getServices(
     resource: any,
     {
@@ -312,6 +317,7 @@ export class Utils {
 
     return services;
   }
+ */
 
   static getTemporalComponent(target: string): number[] | null {
     const temporal: RegExpExecArray | null = /t=([^&]+)/g.exec(target);

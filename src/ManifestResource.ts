@@ -135,13 +135,17 @@ export class ManifestResource extends JSONLDResource {
     return requiredStatement;
   }
 
+/* 
   getService(profile: ServiceProfile): Service | null {
     return Utils.getService(this, profile);
   }
+ */
 
+/* 
   getServices(): Service[] {
     return Utils.getServices(this);
   }
+ */
 
   getThumbnail(): Thumbnail | null {
     let thumbnail: any = this.getProperty("thumbnail");
