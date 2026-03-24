@@ -639,6 +639,7 @@ export class Utils {
     }
   }
 
+/* 
   static loadExternalResourcesAuth09(
     resources: IExternalResource[],
     tokenStorageStrategy: string,
@@ -686,7 +687,9 @@ export class Utils {
         });
     });
   }
+ */
 
+/* 
   // IIIF auth api pre v1.0
   // Keeping this around for now until the auth 1.0 implementation is stable
   static loadExternalResourceAuth09(
@@ -826,6 +829,7 @@ export class Utils {
       }
     });
   }
+ */
 
   static createError(name: StatusCode, message: string): Error {
     const error: Error = new Error();
@@ -849,6 +853,7 @@ export class Utils {
     return Utils.createError(StatusCode.INTERNAL_SERVER_ERROR, message);
   }
 
+/* 
   static authorize(
     resource: IExternalResource,
     tokenStorageStrategy: string,
@@ -965,7 +970,9 @@ export class Utils {
       });
     });
   }
+ */
 
+/* 
   private static showAuthInteraction(
     resource: IExternalResource,
     tokenStorageStrategy: any,
@@ -1036,6 +1043,7 @@ export class Utils {
       });
     }
   }
+ */
 
   static getService(resource: any, profile: ServiceProfile): Service | null {
     const services: Service[] = this.getServices(resource);
