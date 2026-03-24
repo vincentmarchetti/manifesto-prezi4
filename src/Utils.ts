@@ -1,5 +1,5 @@
 import {
-  Deserialiser,
+  //Deserialiser,
   IAccessToken,
   IExternalResource,
   IIIFResource,
@@ -310,12 +310,6 @@ export class Utils {
     return false;
   }
 
-  static parseManifest(
-    manifest: any,
-    options?: IManifestoOptions | undefined
-  ): IIIFResource | null {
-    return Deserialiser.parse(manifest, options);
-  }
 
   static checkStatus(response) {
     if (response.ok) {
