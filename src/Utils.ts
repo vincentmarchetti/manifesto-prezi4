@@ -22,12 +22,15 @@ import {
 //import "isomorphic-unfetch";
 
 export class Utils {
+/* 
   static getMediaType(type: string): MediaType {
     type = type.toLowerCase();
     type = type.split(";")[0];
     return <MediaType>type.trim();
   }
+ */
 
+/* 
   static getImageQuality(profile: ServiceProfile): string {
     if (
       profile === ServiceProfile.IMAGE_0_COMPLIANCE_LEVEL_1 ||
@@ -48,6 +51,7 @@ export class Utils {
 
     return "default";
   }
+ */
 
   static getInexactLocale(locale: string): string {
     if (locale.indexOf("-") !== -1) {
@@ -130,6 +134,7 @@ export class Utils {
     return Utils.normaliseUrl(url1) === Utils.normaliseUrl(url2);
   }
 
+/* 
   static isImageProfile(profile: ServiceProfile): boolean {
     if (
       Utils.normalisedUrlsMatch(
@@ -205,7 +210,9 @@ export class Utils {
 
     return false;
   }
+ */
 
+/* 
   static isImageServiceType(type: string | null): boolean {
     return (
       (type !== null &&
@@ -213,7 +220,9 @@ export class Utils {
       type === ServiceType.IMAGE_SERVICE_3.toLowerCase()
     );
   }
+ */
 
+/* 
   static isLevel0ImageProfile(profile: ServiceProfile): boolean {
     if (
       Utils.normalisedUrlsMatch(
@@ -309,6 +318,7 @@ export class Utils {
 
     return false;
   }
+ */
 
 
   static checkStatus(response) {
