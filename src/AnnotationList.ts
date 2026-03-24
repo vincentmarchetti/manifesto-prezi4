@@ -30,6 +30,7 @@ export class AnnotationList extends JSONLDResource {
     return resources.map((resource) => new Annotation(resource, this.options));
   }
 
+/* 
   load(): Promise<AnnotationList> {
     return new Promise<AnnotationList>((resolve, reject) => {
       if (this.isLoaded) {
@@ -53,4 +54,5 @@ export class AnnotationList extends JSONLDResource {
       }
     });
   }
+ */
 }

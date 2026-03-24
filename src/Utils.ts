@@ -116,6 +116,7 @@ export class Utils {
     }
   }
 
+/* 
   static loadManifest(url: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       fetch(url)
@@ -129,9 +130,11 @@ export class Utils {
         });
     });
   }
+ */
 
 
 
+/* 
   static async attemptResourceWithToken(
     resource: IExternalResource,
     openTokenService: (
@@ -156,6 +159,7 @@ export class Utils {
     }
   }
 
+ */
 
 
   static createError(name: StatusCode, message: string): Error {
