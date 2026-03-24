@@ -21,6 +21,7 @@ export class TreeNode {
     node.parentNode = this;
   }
 
+/* 
   public isCollection(): boolean {
     return this.data.type === Utils.normaliseType(TreeNodeType.COLLECTION);
   }
@@ -32,4 +33,5 @@ export class TreeNode {
   public isRange(): boolean {
     return this.data.type === Utils.normaliseType(TreeNodeType.RANGE);
   }
+ */
 }

@@ -142,13 +142,15 @@ getDuration(): Duration | undefined {
   //     return this._canvases = <ICanvas[]>this.items.en().where(m => m.isCanvas()).toArray();
   // }
 
-  getRanges(): Range[] {
+  /* 
+getRanges(): Range[] {
     if (this._ranges) {
       return this._ranges;
     }
 
     return (this._ranges = <Range[]>this.items.filter((m) => m.isRange()));
   }
+ */
 
   getBehavior(): Behavior | null {
     let behavior: any = this.getProperty("behavior");
@@ -172,7 +174,8 @@ getDuration(): Duration | undefined {
     return this.getProperty("viewingHint");
   }
 
-  getTree(treeRoot: TreeNode): TreeNode {
+  /* 
+getTree(treeRoot: TreeNode): TreeNode {
     treeRoot.data = this;
     this.treeNode = treeRoot;
 
@@ -191,6 +194,7 @@ getDuration(): Duration | undefined {
 
     return treeRoot;
   }
+ */
 
   /* 
 public spansTime(time: number): boolean {
@@ -206,7 +210,8 @@ public spansTime(time: number): boolean {
   }
  */
 
-  private _parseTreeNode(node: TreeNode, range: Range): void {
+  /* 
+private _parseTreeNode(node: TreeNode, range: Range): void {
     node.label = <string>range.getLabel().getValue(this.options.locale);
     node.data = range;
     node.data.type = Utils.normaliseType(TreeNodeType.RANGE);
@@ -229,4 +234,5 @@ public spansTime(time: number): boolean {
       }
     }
   }
+ */
 }

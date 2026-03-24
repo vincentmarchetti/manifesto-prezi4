@@ -22,7 +22,8 @@ export class Collection extends IIIFResource {
     jsonld.__collection = this;
   }
 
-  getCollections(): Collection[] {
+  /* 
+getCollections(): Collection[] {
     if (this._collections) {
       return this._collections;
     }
@@ -30,8 +31,10 @@ export class Collection extends IIIFResource {
       this.items.filter((m) => m.isCollection())
     ));
   }
+ */
 
-  getManifests(): Manifest[] {
+  /* 
+getManifests(): Manifest[] {
     if (this._manifests) {
       return this._manifests;
     }
@@ -39,8 +42,10 @@ export class Collection extends IIIFResource {
       this.items.filter((m) => m.isManifest())
     ));
   }
+ */
 
-  getCollectionByIndex(collectionIndex: number): Promise<Collection> {
+  /* 
+getCollectionByIndex(collectionIndex: number): Promise<Collection> {
     const collections: Collection[] = this.getCollections();
 
     let collection: Collection | undefined;
@@ -60,8 +65,10 @@ export class Collection extends IIIFResource {
       throw new Error("Collection index not found");
     }
   }
+ */
 
-  getManifestByIndex(manifestIndex: number): Promise<Manifest> {
+  /* 
+getManifestByIndex(manifestIndex: number): Promise<Manifest> {
     const manifests: Manifest[] = this.getManifests();
 
     let manifest: Manifest | undefined;
@@ -80,14 +87,19 @@ export class Collection extends IIIFResource {
       throw new Error("Manifest index not found");
     }
   }
+ */
 
+/* 
   getTotalCollections(): number {
     return this.getCollections().length;
   }
+ */
 
-  getTotalManifests(): number {
+  /* 
+getTotalManifests(): number {
     return this.getManifests().length;
   }
+ */
 
   getTotalItems(): number {
     return this.items.length;
@@ -126,7 +138,8 @@ export class Collection extends IIIFResource {
   /**
    * Get a tree of sub collections and manifests, using each child manifest's first 'top' range.
    */
-  getDefaultTree(): TreeNode {
+  /* 
+getDefaultTree(): TreeNode {
     super.getDefaultTree();
 
     //console.log("get default tree for ", this.id);
@@ -140,8 +153,10 @@ export class Collection extends IIIFResource {
 
     return this.defaultTree;
   }
+ */
 
-  private _parseManifests(parentCollection: Collection) {
+  /* 
+private _parseManifests(parentCollection: Collection) {
     if (
       parentCollection.getManifests() &&
       parentCollection.getManifests().length
@@ -160,8 +175,10 @@ export class Collection extends IIIFResource {
       }
     }
   }
+ */
 
-  private _parseCollections(parentCollection: Collection) {
+  /* 
+private _parseCollections(parentCollection: Collection) {
     //console.log("parse collections for ", parentCollection.id);
     if (
       parentCollection.getCollections() &&
@@ -181,4 +198,5 @@ export class Collection extends IIIFResource {
       }
     }
   }
+ */
 }

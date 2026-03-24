@@ -40,7 +40,8 @@ export class Resource extends ManifestResource {
     return resources;
   }
 
-  getType(): ExternalResourceType | null {
+  /* 
+getType(): ExternalResourceType | null {
     const type: string = this.getProperty("type");
 
     if (type) {
@@ -49,6 +50,7 @@ export class Resource extends ManifestResource {
 
     return null;
   }
+ */
 
   getWidth(): number {
     return this.getProperty("width");

@@ -17,9 +17,11 @@ export class AnnotationList extends JSONLDResource {
     this.options = <IManifestoOptions>options;
   }
 
+/* 
   getIIIFResourceType(): IIIFResourceType {
     return <IIIFResourceType>Utils.normaliseType(this.getProperty("type"));
   }
+ */
 
   getLabel(): string {
     return this.label;

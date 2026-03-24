@@ -108,7 +108,8 @@ export class Manifest extends IIIFResource {
     return null;
   }
 
-  public getDefaultTree(): TreeNode {
+  /* 
+public getDefaultTree(): TreeNode {
     super.getDefaultTree();
 
     this.defaultTree.data.type = Utils.normaliseType(TreeNodeType.MANIFEST);
@@ -128,6 +129,7 @@ export class Manifest extends IIIFResource {
 
     return this.defaultTree;
   }
+ */
 
   private _getTopRanges(): any[] {
     const topRanges: any[] = [];
@@ -229,7 +231,8 @@ export class Manifest extends IIIFResource {
     }
   }
 
-  getAllRanges(): Range[] {
+  /* 
+getAllRanges(): Range[] {
     if (this._allRanges != null) return this._allRanges;
 
     this._allRanges = [];
@@ -257,8 +260,10 @@ export class Manifest extends IIIFResource {
 
     return this._allRanges;
   }
+ */
 
-  getRangeById(id: string): Range | null {
+  /* 
+getRangeById(id: string): Range | null {
     const ranges: Range[] = this.getAllRanges();
 
     for (let i = 0; i < ranges.length; i++) {
@@ -283,6 +288,7 @@ export class Manifest extends IIIFResource {
 
     return null;
   }
+ */
 
 
  /* 

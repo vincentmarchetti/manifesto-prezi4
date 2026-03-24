@@ -30,7 +30,6 @@ export * from "./PointSelector.js";
 export * from "./Range.js";
 export * from "./Rendering.js";
 export * from "./Scene.js";
-//export * from "./Serialisation.js";
 export * from "./Service.js";
 export * from "./Size.js";
 export * from "./StatusCode.js";

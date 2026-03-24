@@ -69,9 +69,11 @@ export class IIIFResource extends ManifestResource {
     return homepage["@id"] || homepage.id;
   }
 
+/* 
   getIIIFResourceType(): IIIFResourceType {
     return <IIIFResourceType>Utils.normaliseType(this.getProperty("type"));
   }
+ */
 
   getLogo(): string | null {
     let logo: any = this.getProperty("logo");
@@ -172,6 +174,7 @@ getTrackingLabel(): string {
     return requiredStatement;
   }
 
+/* 
   isCollection(): boolean {
     if (this.getIIIFResourceType() === IIIFResourceType.COLLECTION) {
       return true;
@@ -185,8 +188,10 @@ getTrackingLabel(): string {
     }
     return false;
   }
+ */
 
-  load(): Promise<IIIFResource> {
+  /* 
+load(): Promise<IIIFResource> {
     let that = this;
     return new Promise<IIIFResource>((resolve) => {
       if (that.isLoaded) {
@@ -205,4 +210,5 @@ getTrackingLabel(): string {
       }
     });
   }
+ */
 }

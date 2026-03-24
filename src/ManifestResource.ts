@@ -24,9 +24,11 @@ export class ManifestResource extends JSONLDResource {
     this.options = <IManifestoOptions>options;
   }
 
+/* 
   getIIIFResourceType(): IIIFResourceType {
     return <IIIFResourceType>Utils.normaliseType(this.getProperty("type"));
   }
+ */
 
   /**
    * returns the PropertyValue which in turn allows a language-specific string
@@ -165,7 +167,8 @@ export class ManifestResource extends JSONLDResource {
     return false;
   }
 
-  isCollection(): boolean {
+  /* 
+isCollection(): boolean {
     return this.getIIIFResourceType() === IIIFResourceType.COLLECTION;
   }
 
@@ -176,13 +179,16 @@ export class ManifestResource extends JSONLDResource {
   isRange(): boolean {
     return this.getIIIFResourceType() === IIIFResourceType.RANGE;
   }
+ */
 
   // this different implementation is necessary until such time as the
   // SCENE is added to the @iiif/vocabulary package.
+/* 
   get isScene(): boolean {
     return (
       this.getIIIFResourceType() ===
       <IIIFResourceType>Utils.normaliseType("Scene")
     );
   }
+ */
 }
