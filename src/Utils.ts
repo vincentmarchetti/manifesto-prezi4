@@ -345,6 +345,7 @@ export class Utils {
     });
   }
 
+/* 
   static loadExternalResourcesAuth1(
     resources: IExternalResource[],
     openContentProviderInteraction: (service: Service) => any,
@@ -391,7 +392,9 @@ export class Utils {
         });
     });
   }
+ */
 
+/* 
   static async loadExternalResourceAuth1(
     resource: IExternalResource,
     openContentProviderInteraction: (service: Service) => any,
@@ -466,7 +469,9 @@ export class Utils {
       throw Utils.createAuthorizationFailedError();
     }
   }
+ */
 
+/* 
   static async doAuthChain(
     resource: IExternalResource,
     openContentProviderInteraction: (service: Service) => any,
@@ -614,6 +619,7 @@ export class Utils {
       showOutOfOptionsMessages(resource, lastAttempted);
     }
   }
+ */
 
   static async attemptResourceWithToken(
     resource: IExternalResource,
@@ -639,55 +645,6 @@ export class Utils {
     }
   }
 
-/* 
-  static loadExternalResourcesAuth09(
-    resources: IExternalResource[],
-    tokenStorageStrategy: string,
-    clickThrough: (resource: IExternalResource) => Promise<any>,
-    restricted: (resource: IExternalResource) => Promise<any>,
-    login: (resource: IExternalResource) => Promise<any>,
-    getAccessToken: (
-      resource: IExternalResource,
-      rejectOnError: boolean
-    ) => Promise<IAccessToken>,
-    storeAccessToken: (
-      resource: IExternalResource,
-      token: IAccessToken,
-      tokenStorageStrategy: string
-    ) => Promise<any>,
-    getStoredAccessToken: (
-      resource: IExternalResource,
-      tokenStorageStrategy: string
-    ) => Promise<IAccessToken>,
-    handleResourceResponse: (resource: IExternalResource) => Promise<any>,
-    options?: IManifestoOptions
-  ): Promise<IExternalResource[]> {
-    return new Promise<IExternalResource[]>((resolve, reject) => {
-      const promises = resources.map((resource: IExternalResource) => {
-        return Utils.loadExternalResourceAuth09(
-          resource,
-          tokenStorageStrategy,
-          clickThrough,
-          restricted,
-          login,
-          getAccessToken,
-          storeAccessToken,
-          getStoredAccessToken,
-          handleResourceResponse,
-          options
-        );
-      });
-
-      Promise.all(promises)
-        .then(() => {
-          resolve(resources);
-        })
-        ["catch"]((error) => {
-          reject(error);
-        });
-    });
-  }
- */
 
 /* 
   // IIIF auth api pre v1.0
