@@ -106,6 +106,7 @@ export class Utils {
 
 
 
+/* 
   static checkStatus(response) {
     if (response.ok) {
       return response;
@@ -115,6 +116,7 @@ export class Utils {
       return Promise.reject(error);
     }
   }
+ */
 
 /* 
   static loadManifest(url: string): Promise<any> {
@@ -162,20 +164,25 @@ export class Utils {
  */
 
 
+/* 
   static createError(name: StatusCode, message: string): Error {
     const error: Error = new Error();
     error.message = message;
     error.name = String(name);
     return error;
   }
+ */
 
+/* 
   static createAuthorizationFailedError(): Error {
     return Utils.createError(
       StatusCode.AUTHORIZATION_FAILED,
       "Authorization failed"
     );
   }
+ */
 
+/* 
   static createRestrictedError(): Error {
     return Utils.createError(StatusCode.RESTRICTED, "Restricted");
   }
@@ -183,6 +190,7 @@ export class Utils {
   static createInternalServerError(message: string): Error {
     return Utils.createError(StatusCode.INTERNAL_SERVER_ERROR, message);
   }
+ */
 
 
   static getService(resource: any, profile: ServiceProfile): Service | null {
