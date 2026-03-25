@@ -29,7 +29,7 @@ export * from "./Range.js";
 //export * from "./Rendering.js";
 export * from "./Scene.js";
 export * from "./Service.js";
-export * from "./Size.js";
+//export * from "./Size.js";
 export * from "./StatusCode.js";
 export * from "./Thumbnail.js";
 export * from "./TreeNode.js";

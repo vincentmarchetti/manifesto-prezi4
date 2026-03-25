@@ -12,7 +12,6 @@ import {
   ManifestResource,
   ResourceOps,
   Range,
-  Service,
   TreeNode,
   TreeNodeType
 } from "./internal.js";
