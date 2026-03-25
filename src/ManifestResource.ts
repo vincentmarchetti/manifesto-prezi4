@@ -4,8 +4,7 @@ import {
   Service,
   LabelValuePair,
   PropertyValue,
-  IManifestoOptions,
-  IExternalResource,
+  IManifestoOptions
 } from "./internal.js";
 import {
   ServiceProfile,
@@ -14,7 +13,7 @@ import {
 } from "@iiif/vocabulary/dist-commonjs/index.js";
 
 export class ManifestResource extends JSONLDResource {
-  externalResource: IExternalResource;
+  //externalResource: IExternalResource;
   options: IManifestoOptions;
 
   constructor(jsonld: any, options?: IManifestoOptions) {

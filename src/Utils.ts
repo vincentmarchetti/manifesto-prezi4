@@ -1,24 +1,17 @@
 import {
   //Deserialiser,
-  IAccessToken,
-  IExternalResource,
+  
   IIIFResource,
   IManifestoOptions,
-  JSONLDResource,
-  Service,
-  StatusCode,
-  TreeNode,
+  JSONLDResource
+  
 } from "./internal.js";
 import {
   MediaType,
   ServiceProfile,
   ServiceType,
 } from "@iiif/vocabulary/dist-commonjs/index.js";
-import {
-  OK,
-  MOVED_TEMPORARILY,
-  UNAUTHORIZED,
-} from "@edsilv/http-status-codes/dist-commonjs/index.js";
+
 //import "isomorphic-unfetch";
 
 export class Utils {
