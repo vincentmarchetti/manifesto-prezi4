@@ -2,7 +2,6 @@ import {
   JSONLDResource,
   Thumbnail,
   Service,
-  Rendering,
   LabelValuePair,
   PropertyValue,
   IManifestoOptions,
@@ -82,7 +81,8 @@ export class ManifestResource extends JSONLDResource {
     return metadata;
   }
 
-  getRendering(format: RenderingFormat): Rendering | null {
+  /* 
+getRendering(format: RenderingFormat): Rendering | null {
     const renderings: Rendering[] = this.getRenderings();
 
     for (let i = 0; i < renderings.length; i++) {
@@ -95,8 +95,10 @@ export class ManifestResource extends JSONLDResource {
 
     return null;
   }
+ */
 
-  getRenderings(): Rendering[] {
+  /* 
+getRenderings(): Rendering[] {
     let rendering;
 
     // if passing a manifesto-parsed object, use the __jsonld.rendering property,
@@ -122,6 +124,7 @@ export class ManifestResource extends JSONLDResource {
 
     return renderings;
   }
+ */
 
   getRequiredStatement(): LabelValuePair | null {
     let requiredStatement: LabelValuePair | null = null;

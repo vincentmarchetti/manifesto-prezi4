@@ -26,7 +26,7 @@ export * from "./Manifest.js";
 export * from "./Model.js";
 export * from "./PointSelector.js";
 export * from "./Range.js";
-export * from "./Rendering.js";
+//export * from "./Rendering.js";
 export * from "./Scene.js";
 export * from "./Service.js";
 export * from "./Size.js";
