@@ -17,10 +17,10 @@ export class Camera extends ManifestResource {
   
   get FieldOfView(): number | null {
     if (!this.isPerspectiveCamera ) return null;
-    const raw = this.ResourceProperty("fieldOfView");
+    const raw = Number(this.ResourceProperty("fieldOfView"));
     if (raw == null) return null;
     const rawType:string = typeof raw;
-    if (rawType != 'string') throw new Error(`invalid FieldOfView type ${rawType}`);
+    if (rawType != 'number') throw new Error(`invalid FieldOfView type ${rawType}`);
     return raw as number;
   }
 
