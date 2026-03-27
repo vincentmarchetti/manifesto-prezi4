@@ -3,7 +3,6 @@ import {IManifestoOptions} from "./IManifestoOptions.js";
 
 export class JSONLDResource {
   context: string;
-  id: string;
   __jsonld: any;
 
   static ctors:any = null;
@@ -28,15 +27,17 @@ export class JSONLDResource {
     return this.ResourceProperty("type") as string;
   }
 
-  get ResourceId():string|null {
+  get ResourceId():string  {
     const rv:unknown = this.ResourceProperty('id');
-    if (rv == null) return null;
+    if (rv == null) return "";
     if (typeof rv != "string"){
         const msg =`JSONLDResource.ResourceId | json id value not a string`;
-        return null;
+        throw new Error(msg);
     }
     return rv as string;
   }
+  
+  get id():string { return this.ResourceId;} 
   
   // @deprecated legacy function signature
     getProperty(name: string): any {
