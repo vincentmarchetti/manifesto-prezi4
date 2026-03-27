@@ -31,7 +31,7 @@ JSONLDResource.ctors = {
     "Manifest"	            : Manifest,
     "SpecificResource"	    : SpecificResource,
     "Light"	                : Light,
-    "Camera"	            : Camera,
+    "PerspectiveCamera"	    : Camera,
     "TextualBody"	        : TextualBody,
     "Annotation"	        : Annotation,
     "AnnotationPage"	    : AnnotationPage,
