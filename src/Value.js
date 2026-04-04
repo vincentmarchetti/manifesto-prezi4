@@ -15,7 +15,7 @@ export class Value extends JSONLDResource{
 get Value:number {
     const prop:unknown = this.ResourceProperty("value");
     const retVal = Number(prop);
-    if ( retVal === NaN )
+    if ( Number.isNaN(retVal) )
         throw new Error(`Value class: value property not a number: ${prop}`);
     return retVal as number;
 }

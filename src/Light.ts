@@ -1,164 +1,100 @@
-import {
-  IManifestoOptions,
-  ManifestResource,
-  IResource,
-  JSONLDResource,
-  Color
-} from "./internal.js";
+import {IResource, ResourceOps}       from "./IResource.js"; 
+import {JSONLDResource}  from "./JSONLDResource.js";
+import {Color}           from "./Color.js";
+import {Value}           from "./Value.js";
 
-export class Light extends ManifestResource {
-  constructor(jsonld: IResource, options?: IManifestoOptions) {
-    super(jsonld, options);
+
+abstract class LightBase extends JSONLDResource {
+  constructor(jsonld: IResource) {
+    super(jsonld);
   }
+  
+  readonly isLight:boolean = true;
+}
+  
+abstract class SimpleLightBase extends LightBase{
+    constructor(jsonld: IResource) {
+        super(jsonld);
+    }
+    
+    get Color(): { red:number, green:number, blue:number }  {
+        const cssTerm: unknown = this.ResourceProperty("color");
+        
+        try{
+            if (typeof cssTerm == null)
+                return {red:255, green:255, blue:255 };
+                
+            if (typeof cssTerm == 'string') 
+                return Color.fromCSS(cssTerm);
+            
+            throw new Error(`color property not expected string ${cssTerm}`);
+        } catch (error){
+            const msg = `SimpleLightBase | ${error}`;
+            throw new Error(msg);
+        }
+    }
+    
+    get Intensity():Value | null {
+        const prop : unknown = this.ResourceProperty("intensity");
+        if (prop == null) return null;
+        
+        try {
+            const valueData : IResource | null = ResourceOps.cast_to_resource(prop);
+            if (valueData == null)
+                throw new Error(`property has invalid value`);
+            const valueResource : JSONLDResource = JSONLDResource.Construct(valueData);
+            if (!(valueResource as any).isResource)
+                throw new Error(`property not a Value Resource`);
+            return valueResource as Value;
+        } catch(error){
+            const msg = `SimpleLightBase.Intensity | ${error}`;
+            throw new Error(msg);
+        }
+    }
+}
 
+abstract class AimedLightBase extends SimpleLightBase {
+    constructor(jsonld: IResource) {
+        super(jsonld);
+    }
 
-  get Color(): Color | null {
-    return null;
+    get LookAt(): JSONLDResource | null {
+        const prop : unknown = this.ResourceProperty("lookAt");
+        if (prop == null) return null;
+        
+        try {
+            const lookAtData : IResource | null = ResourceOps.cast_to_resource(prop);
+            if (lookAtData == null)
+                throw new Error(`lookAt property has invalid value`);
+            const lookAtResource : JSONLDResource = JSONLDResource.Construct(lookAtData);
+            return lookAtResource as JSONLDResource;
+        } catch(error){
+            const msg = `AimedLightBase.LookAt | ${error}`;
+            throw new Error(msg);
+        }    
+    }
+}
+
+export class SpotLight extends AimedLightBase {
+    constructor(jsonld: IResource) {
+        super(jsonld);
+    }
+
+    readonly isSpotLight:boolean = true;
+    
     /*
-    var hexColor = this.getPropertyFromSelfOrSource("color");
-    if (hexColor) return Color.fromCSS(hexColor);
-    else return new Color([255, 255, 255]); // white light
+    angle property  is the "half - angle " of the cone emitted by the spotlight
+    in degrees, as such it is limited by 0 to 90
     */
-  }
-
-  /**
-   * The implementation of the intensity is based on
-   * {@link https://github.com/IIIF/3d/blob/main/temp-draft-4.md | temp-draft-4.md }
-   * and the example 3D manifests
-   * {@link https://github.com/IIIF/3d/tree/main/manifests/3_lights | lights }
-   * on 24 Mar 2024. The intensity property in the manifest is an object
-   * with declared type 'Value', a numeric property named 'value' and a
-   * property named unit . This implementation will only work with a unit == 'relative'
-   * and it will be assumed that a relative unit value of 1.0 corresponds to the
-   * brightest light source a rendering engine supports.
-   *
-   * This code will implement a default intensity of 1.0
-   **/
-  /*
-  getIntensity(): number |  null {
-    var intObject = this.getPropertyFromSelfOrSource("intensity");
-    if (intObject) {
-      try {
-        if (!(intObject.type === "Value" && intObject.unit === "relative"))
-          throw new Error();
-        return intObject.value as number;
-      } catch (err) {
-        throw new Error(
-          "unable to interpret raw intensity object " +
-            JSON.stringify(intObject)
-        );
-      }
-    } else return 1.0;
-  }
- */
- 
-  get Intensity(): number | null {
-    return null;
-    /*
-    var intObject = this.getPropertyFromSelfOrSource("intensity");
-    if (intObject) {
-      try {
-        if (!(intObject.type === "Value" && intObject.unit === "relative"))
-          throw new Error();
-        return intObject.value as number;
-      } catch (err) {
-        throw new Error(
-          "unable to interpret raw intensity object " +
-            JSON.stringify(intObject)
-        );
-      }
-    } else return 1.0;
-    */
-  }
-
-  /**
-  * As defined in the temp-draft-4.md ( 
-  * https://github.com/IIIF/3d/blob/main/temp-draft-4.md#lights ; 12 May 2024)
-  * this quantity is the half-angle of the cone of the spotlight. 
-  *
-  * The inconsistency between this definition of the angle and the definition of
-  * fieldOfView for PerspectiveCamera (where the property value defines the full angle) has
-  * already been noted: https://github.com/IIIF/api/issues/2284
-  *
-  * provisional decision is to return undefined in case that this property 
-  * is accessed in a light that is not a spotlight
-  *
-  *
-  * @returns number
-  
-  **/
-  
-  get Angle(): number | null {
-    return null;
-    /*
-    if (this.isSpotLight()) {
-      return Number(this.getPropertyFromSelfOrSource("angle"));
-    } else {
-      return undefined;
-    }
-    */
-  }
-
-  /**
-   * @return : if not null, is either a PointSelector, or an object
-   * with an id matching the id of an Annotation instance.
-   **/
-  /*
-  getLookAt(): object | PointSelector | null {
-    let rawObj = this.getPropertyAsObject("lookAt") ?? null;
-    if (rawObj == null) return null;
-
-    let rawType = (rawObj["type"] || rawObj["@type"]) ?? null;
-    if (rawType == null) return null;
-
-    if (rawType == "Annotation") {
-      return rawObj;
-    }
-    if (rawType == "PointSelector") {
-      return new PointSelector(rawObj);
-    }
-    throw new Error(`unidentified value of lookAt ${rawType}`);
-  }
-  */
-  
-  get LookAt(): JSONLDResource | null {
-    return null;
-    /*
-    let rawObj = this.getPropertyAsObject("lookAt") ?? null;
-    if (rawObj == null) return null;
-
-    let rawType = (rawObj["type"] || rawObj["@type"]) ?? null;
-    if (rawType == null) return null;
-
-    if (rawType == "Annotation") {
-      return rawObj;
-    }
-    if (rawType == "PointSelector") {
-      return new PointSelector(rawObj);
-    }
-    throw new Error(`unidentified value of lookAt ${rawType}`);
-    */
-  }
-
-  get isAmbientLight(): boolean {
-    return (this.ResourceType === 'AmbientLight');
-  }
-
-  get isDirectionalLight(): boolean {
-    return (this.ResourceType === 'DirectionalLight');
-  }
-
-  get isPointLight(): boolean {
-    return (this.ResourceType === 'PointLight');
-  }
-
-  get isSpotLight(): boolean {
-    return (this.ResourceType === 'SpotLight');
-  }
-  
-  get isLight():boolean {
-    return true;
-  
-  }
-  
+    get Angle():number | null {
+        const prop:unknown = this.ResourceProperty("angle");
+        const retVal:number = Number(prop);
+        if ( Number.isNaN(retVal) )
+            throw new Error(`SpotLight.Angle: value property not a number: ${prop}`);
+        if (retVal <= 0.0 || retVal >= 90.0){
+            const msg:string = `SpotLight.Angle | invalid angle value ${retVal}`;
+            throw new Error(msg);
+        }
+        return retVal;
+    }    
 }

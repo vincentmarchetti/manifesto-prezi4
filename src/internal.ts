@@ -29,4 +29,5 @@ export * from "./TreeNode.js";
 export * from "./TreeNodeType.js";
 export * from "./Utils.js";
 export * from "./Color.js";
+export * from "./Value.js";
 
