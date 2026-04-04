@@ -20,7 +20,8 @@ import {    TranslateTransform,
             PointSelector,
             JSONLDResource,
             IResource,
-            ResourceOps } from "./internal.js";
+            ResourceOps,
+            Value } from "./internal.js";
 
 
 JSONLDResource.ctors = {
@@ -37,7 +38,8 @@ JSONLDResource.ctors = {
     "AnnotationPage"	    : AnnotationPage,
     "Scene"	                : Scene,
     "PointSelector"	        : PointSelector,
-    "Model"                 : Model
+    "Model"                 : Model,
+    "Value"                 : Value
 };
 
 

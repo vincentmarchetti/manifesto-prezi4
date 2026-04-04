@@ -43,7 +43,7 @@ abstract class SimpleLightBase extends LightBase{
             if (valueData == null)
                 throw new Error(`property has invalid value`);
             const valueResource : JSONLDResource = JSONLDResource.Construct(valueData);
-            if (!(valueResource as any).isResource)
+            if (!(valueResource as any).isValue)
                 throw new Error(`property not a Value Resource`);
             return valueResource as Value;
         } catch(error){
