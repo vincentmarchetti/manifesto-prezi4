@@ -17,6 +17,11 @@ abstract class SimpleLightBase extends LightBase{
         super(jsonld);
     }
     
+    /*
+    Developer note 5 Apr 2026: The Presentation 4 draft document specifies
+    the Color property has default value of white, so this implementation
+    will return WHITE if color property is undefined in JSON.
+    */
     get Color(): { red:number, green:number, blue:number }  {
         const cssTerm: unknown = this.ResourceProperty("color");
         
