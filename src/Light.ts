@@ -103,3 +103,16 @@ export class SpotLight extends AimedLightBase {
         return retVal;
     }    
 }
+
+export class AmbientLight extends SimpleLightBase{
+    readonly isAmbientLight:boolean = true;
+}
+
+export class PointLight extends SimpleLightBase{
+    readonly isPointLight:boolean = true;
+}
+
+export class DirectionalLight extends AimedLightBase {
+    readonly isDirectionalLight:boolean = true;
+}
+
