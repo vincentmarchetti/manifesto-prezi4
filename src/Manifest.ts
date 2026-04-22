@@ -16,6 +16,7 @@ import {
   TreeNodeType
 } from "./internal.js";
 
+import {find_annotation_in_manifest} from "./annotation_search.js";
 /**
  * @remarks Scenes are conveniently retrieved from a Manifest by iterating through
  * Sequence in the Manifest, inner loop the Scenes in each sequence
