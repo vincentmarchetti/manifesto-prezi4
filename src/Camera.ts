@@ -2,7 +2,8 @@ import {
   IManifestoOptions,
   ManifestResource,
   JSONLDResource,
-  IResource
+  IResource,
+  ResourceOps
 } from "./internal.js";
 
 export class Camera extends ManifestResource {
@@ -54,9 +55,19 @@ export class Camera extends ManifestResource {
    **/
   
   get LookAt(): JSONLDResource | null {
-    // TODO add identifying and parsing
-    
-    return null;
+        const prop : unknown = this.ResourceProperty("lookAt");
+        if (prop == null) return null;
+        
+        try {
+            const lookAtData : IResource | null = ResourceOps.cast_to_resource(prop);
+            if (lookAtData == null)
+                throw new Error(`lookAt property has invalid value`);
+            const lookAtResource : JSONLDResource = JSONLDResource.Construct(lookAtData);
+            return lookAtResource as JSONLDResource;
+        } catch(error){
+            const msg = `Camera.LookAt | ${error}`;
+            throw new Error(msg);
+        }    
   }
 
   /**
