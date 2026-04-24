@@ -1,5 +1,5 @@
 export * from "./internal.js";
-
+export * from "./annotation_search.js";
 
 import { IManifestoOptions } from "./IManifestoOptions.js";
 import { Utils } from "./Utils.js";
