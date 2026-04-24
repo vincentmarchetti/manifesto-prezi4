@@ -72,10 +72,10 @@ function find_annotation_in_page( anno_id:string, page_data:object) : object | n
     })();
     const init_accum : object|null = null;
     return items.reduce( (accum:object|null, anno_data:object ):object|null => {
-        //const rv:object|null = find_annotation_in_page(anno_id, page_data);
-        const rv:object|null = null;
-        if (rv == null) return accum;
-        return merge_annotation(rv, accum);
+        if (anno_data["id"] === anno_id)
+            return merge_annotation(anno_data, accum);
+        return accum;
+        
     },
     init_accum);
 }
