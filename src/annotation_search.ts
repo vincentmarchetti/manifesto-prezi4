@@ -72,10 +72,48 @@ function find_annotation_in_page( anno_id:string, page_data:object) : object | n
     })();
     const init_accum : object|null = null;
     return items.reduce( (accum:object|null, anno_data:object ):object|null => {
+    
         if (anno_data["id"] === anno_id)
             return merge_annotation(anno_data, accum);
+
+        const rv : object | null =  find_annotation_in_annotation(anno_id, anno_data);
+        if (rv != null) return merge_annotation(rv, accum);
         return accum;
         
     },
     init_accum);
+}
+
+/*
+searches for annotations within Canvas or Scene in body
+*/
+function find_annotation_in_annotation( anno_id: string, anno_data:object ) : object | null {
+    /* developer note 20260425: this code will accommodate the value of the 
+    body being an object or an array of length 1
+    */
+    
+    const bodies  = ( (): object[] => {
+        const rv = anno_data["body"];
+        if (rv == null) return [];
+        if (Array.isArray(rv)) return rv;
+        return [rv];
+    })();
+    const init_accum : object | null = null;
+    return bodies.reduce( (accum:object|null, body_data:object ) : object|null => {
+        const body_or_source  = ( ():object => {
+            if ( body_data["type"] === "SpecificResource" ) 
+                return body_data["source"];
+            return body_data;
+        })();
+
+        if (body_or_source == null ) return accum;
+        if ( ["Scene","Canvas"].includes( body_or_source["type"])){
+            //console.log(`searching inside ${body_or_source["type"]}`);
+            const rv = find_annotation_in_container(anno_id, body_or_source);
+            if (rv != null)
+                return merge_annotation(rv, accum);
+        }
+        return accum;             
+    },  init_accum );
+    
 }
