@@ -1,5 +1,6 @@
 import {expect} from "chai";
 import {find_annotation_in_manifest} from "@kshell/manifesto-prezi4";
+import * as manifesto from "@kshell/manifesto-prezi4";
 import * as fs from "node:fs";
 
 
@@ -36,4 +37,22 @@ describe('seach_annotation', function() {
 
         
     
+});
+
+describe('manifest findAnnotationById', function(){
+
+    it('find annotation', function() {
+        expect(manifest_json).to.exist; 
+        const manifest = manifesto.buildManifest(manifest_json);
+        expect(manifest).to.be.instanceOf(manifesto.Manifest);
+        const anno_id = "https://iiif.io/api/presentation/4.0/example/uc06/scene/canvas-scene/anno/1";
+
+        const found = manifest.findAnnotationById(anno_id);
+        expect(found).to.exist;
+        expect(found.isAnnotation).to.equal(true);
+        expect(found.ResourceId).to.equal(anno_id);
+        
+    });
+
+
 });
