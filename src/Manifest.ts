@@ -5,6 +5,7 @@ import {
   ServiceProfile,
 } from "@iiif/vocabulary/dist-commonjs/index.js";
 import {
+  Annotation,
   IManifestoOptions,
   IIIFResource,
   IResource,
@@ -17,41 +18,24 @@ import {
 } from "./internal.js";
 
 import {find_annotation_in_manifest} from "./annotation_search.js";
-/**
- * @remarks Scenes are conveniently retrieved from a Manifest by iterating through
- * Sequence in the Manifest, inner loop the Scenes in each sequence
- * @see {@link Sequence }
- *
- * @example
- * var manifest: Manifest;
- * function doSomethingWithScene(scene:Scene)...
- * ...
- * foreach(var seq:Sequence of manifest.getSequences()
- *   foreach(var scene : Scene of seq.getScenes()
- *     doSomethingWithScene(scene);
- **/
+
 export class Manifest extends IIIFResource {
-  public index: number = 0;
-  private _allRanges: Range[] | null = null;
-  private _topRanges: Range[] = [];
-
-  constructor(jsonld?: any, options?: IManifestoOptions) {
-    super(jsonld, options);
-
-    if (this.__jsonld.structures && this.__jsonld.structures.length) {
-      const topRanges: any[] = this._getTopRanges();
-
-      for (let i = 0; i < topRanges.length; i++) {
-        const range: any = topRanges[i];
-        this._parseRanges(range, String(i));
-      }
+    public index: number = 0;
+    private _allRanges: Range[] | null = null;
+    private _topRanges: Range[] = [];
+    
+    constructor(jsonld?: any, options?: IManifestoOptions) {
+        super(jsonld, options);
+        
+        if (this.__jsonld.structures && this.__jsonld.structures.length) {
+            const topRanges: any[] = this._getTopRanges();
+            
+            for (let i = 0; i < topRanges.length; i++) {
+            const range: any = topRanges[i];
+            this._parseRanges(range, String(i));
+        }
     }
-
-    // initialization the cached _annotationIdMap to null
-    // it will be populated if and only if client calls make a request
-    // to the getter annotationIdMap
-    this._annotationIdMap = null;
-  }
+}
 
   /** @deprecated Use getAccompanyingCanvas instead */
   getPosterCanvas(): unknown {
@@ -326,24 +310,11 @@ getRangeById(id: string): Range | null {
     return this.getProperty("viewingHint");
   }
 
-  _annotationIdMap: any;
 
-  /**
-   * Developer Note: The concept of the "id map" appear in the
-   * JSON-LD specification https://www.w3.org/TR/json-ld11/#dfn-id-map
-   * This functionality may be available as well in the 'nodeMap' code of the
-   * digitalbazaar/jsonld library
-   *
-   * this very simplified version just returns a mao of id -> Annotation nodes
-   * in manifest
-   *
-   * THe annotationIdMap is a Javascript object whose property names are
-   * IRI (id values) and property values are instances of the Annotation class
-   **/
-  get annotationIdMap(): Object {
-    if (this._annotationIdMap == null) {
-      this._annotationIdMap = {};
+
+  findAnnotationById( anno_id:string ):Annotation|null {
+    const anno_data = find_annotation_in_manifest( anno_id, this.__jsonld);
+    if (anno_data == null) return null;
+    return new Annotation( anno_data as IResource, this.options);
     }
-    return this._annotationIdMap;
-  }
 }
