@@ -19,14 +19,13 @@
               "type": "Annotation",
               "motivation": ["painting"],
               "body": {
+                "id": "https://example.org/iiif/3d/anno1/body",
                 "type": "SpecificResource",
-                "source": [
-                  {
-                    "id": "https://raw.githubusercontent.com/IIIF/3d/main/assets/astronaut/astronaut.glb",
-                    "type": "Model",
-                    "format": "model/gltf-binary"
-                  }
-                ],
+                "source": {
+                  "id": "https://raw.githubusercontent.com/IIIF/3d/main/assets/astronaut/astronaut.glb",
+                  "type": "Model",
+                  "format": "model/gltf-binary"
+                },
                 "transform": [
                   {
                     "type": "RotateTransform",
@@ -43,13 +42,12 @@
                 ]
               },
               "target": {
+                "id": "https://example.org/iiif/3d/anno1/target",
                 "type": "SpecificResource",
-                "source": [
-                  {
-                    "id": "https://example.org/iiif/scene1",
-                    "type": "Scene"
-                  }
-                ],
+                "source": {
+                  "id": "https://example.org/iiif/scene1",
+                  "type": "Scene"
+                },
                 "selector": [
                   {
                     "type": "PointSelector",
