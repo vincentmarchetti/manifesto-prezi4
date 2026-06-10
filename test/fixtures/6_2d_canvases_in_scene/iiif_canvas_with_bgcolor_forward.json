@@ -1,0 +1,125 @@
+{
+  "@context": "http://iiif.io/api/presentation/4/context.json",
+  "id": "https://example.org/iiif/3d/iiif_canvas_with_bgcolor_forward.json",
+  "type": "Manifest",
+  "label": { "en": ["Scene with a Canvas"] },
+  "summary": { "en": ["..."] },
+  "structures": [
+    {
+      "id": "https://example.org/iiif/ranges/1",
+      "type": "Range",
+      "behavior": ["sequence"],
+      "items": [
+        {
+          "id": "https://example.org/iiif/scene1",
+          "type": "Scene"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "https://example.org/iiif/scene1",
+      "type": "Scene",
+      "label": { "en": ["A Scene"] },
+      "items": [
+        {
+          "id": "https://example.org/iiif/scene1/page/p1/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://example.org/iiif/3d/anno1",
+              "type": "Annotation",
+              "motivation": ["painting"],
+              "body": {
+                "id": "https://raw.githubusercontent.com/IIIF/3d/main/assets/astronaut/astronaut.glb",
+                "type": "Model",
+                "format": "model/gltf-binary"
+              },
+              "target": {
+                "id": "https://example.org/iiif/scene1",
+                "type": "Scene"
+              }
+            },
+            {
+              "id": "https://example.org/iiif/3d/anno2",
+              "type": "Annotation",
+              "motivation": ["painting"],
+              "body": {
+                "id": "https://iiif.io/api/presentation/4.0/example/uc06/scene/canvas-scene/anno/2/specificResource/1",
+                "type": "SpecificResource",
+                "source": {
+                  "id": "https://example.org/iiif/canvas/1",
+                  "type": "Canvas"
+                },
+                "transform": [
+                  {
+                    "type": "ScaleTransform",
+                    "x": 2.1687,
+                    "y": 2.8273,
+                    "z": 1.0
+                  }
+                ]
+              },
+              "target": {
+                "id": "https://example.org/iiif/3d/anno2/target",
+                "type": "SpecificResource",
+                "source": {
+                  "id": "https://example.org/iiif/scene1",
+                  "type": "Scene"
+                },
+                "selector": [
+                  {
+                    "type": "PointSelector",
+                    "x": -1.08435,
+                    "y": 2.8273,
+                    "z": -2.0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "https://example.org/iiif/canvas/1",
+      "type": "Canvas",
+      "label": { "en": ["Painting"]},
+      "backgroundColor": "#c0c0c0",
+      "width": 1,
+	  "height": 1,
+      "items": [
+        {
+          "id": "https://example.org/iiif/scene1/page/p2/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://example.org/iiif/3d/p2/anno1",
+              "type": "Annotation",
+              "motivation": ["painting"],
+              "body": {
+                "id": "https://media.nga.gov/iiif/public/objects/1/0/6/3/8/2/106382-primary-0-nativeres.ptif/full/full/0/default.jpg",
+                "type": "Image",
+                "height": 28273,
+                "width": 21687,
+                "format": "image/jpeg",
+                "service": [
+                  {
+                    "@id": "https://media.nga.gov/iiif/public/objects/1/0/6/3/8/2/106382-primary-0-nativeres.ptif",
+                    "@type": "ImageService2",
+                    "profile": "http://iiif.io/api/image/2/level1.json"
+                  }
+                ]
+              },
+              "target": {
+                "id": "https://example.org/iiif/canvas/1",
+                "type": "Canvas"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
