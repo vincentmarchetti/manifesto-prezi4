@@ -164,9 +164,6 @@ getRenderings(): Rendering[] {
     return null;
   }
 
-  isCanvas(): boolean {
-    return false;
-  }
 
   /* 
 isCollection(): boolean {

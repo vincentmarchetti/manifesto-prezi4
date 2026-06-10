@@ -40,27 +40,7 @@ export interface IResource{
             return null;
         }  
     }
-    
-    /*  Developer note 3/6/2026: The coerce_to_resource needs some better
-    design. Remove as cruft if this is still here 4/6/2026
-    
-    static coerce_to_resource( a:unknown , coerce_array = true ) : IResource | null {
-        if ( coerce_array && Array.isArray(a)){
-            a = ( (x:unknown[] ):unknown  => {               
-                const n = x.length;
-                if (n==0)
-                    return null;
-                if (n > 1){
-                    const msg = `ResourceOps.coerce_to_resource : multi item array`;
-                    return null;
-                }
-                return x[0];                
-            })(a as unknown[] );
-        }
-        return ResourceOps.cast_to_resource(a);
-    }
-    */
-    
+        
     static cast_to_array( a: unknown ) : IResource[] | null {
         try{
             if (a == null) return ([] as IResource[] );
