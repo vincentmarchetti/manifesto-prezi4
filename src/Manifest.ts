@@ -63,7 +63,7 @@ export class Manifest extends IIIFResource {
                 return resource as ManifestResource;
             }
             catch (error){
-                const msg = 'map at element ${index} | ${error}';
+                const msg = `map at element ${index} | ${error}`;
                 throw new Error(msg);
             }
         });
