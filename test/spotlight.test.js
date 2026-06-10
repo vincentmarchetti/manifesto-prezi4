@@ -15,8 +15,7 @@ before(function(){
 describe('SpotLight', function() {
     
     it('SpotLight loads', function() {
-        expect(body_data).to.exist; 
-        console.log(body_data);
+        expect(body_data).to.exist;
         const body_resource = manifesto.ResourceOps.cast_to_resource(body_data);
         const spotlight = manifesto.JSONLDResource.Construct(body_resource);
         expect(spotlight).to.exist;
