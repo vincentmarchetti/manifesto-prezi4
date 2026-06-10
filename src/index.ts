@@ -21,7 +21,7 @@ import {    TranslateTransform,
             JSONLDResource,
             IResource,
             ResourceOps,
-            Value } from "./internal.js";
+            Quantity } from "./internal.js";
 
 
 JSONLDResource.ctors = {
@@ -39,7 +39,7 @@ JSONLDResource.ctors = {
     "Scene"	                : Scene,
     "PointSelector"	        : PointSelector,
     "Model"                 : Model,
-    "Value"                 : Value
+    "Quantity"              : Quantity
 };
 
 

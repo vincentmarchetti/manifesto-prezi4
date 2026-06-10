@@ -1,7 +1,7 @@
 import {IResource, ResourceOps}       from "./IResource.js"; 
 import {JSONLDResource}  from "./JSONLDResource.js";
 import {Color}           from "./Color.js";
-import {Value}           from "./Value.js";
+import {Quantity}        from "./Quantity.js";
 
 
 abstract class LightBase extends JSONLDResource {
@@ -39,7 +39,7 @@ abstract class SimpleLightBase extends LightBase{
         }
     }
     
-    get Intensity():Value | null {
+    get Intensity():Quantity | null {
         const prop : unknown = this.ResourceProperty("intensity");
         if (prop == null) return null;
         
@@ -48,9 +48,9 @@ abstract class SimpleLightBase extends LightBase{
             if (valueData == null)
                 throw new Error(`property has invalid value`);
             const valueResource : JSONLDResource = JSONLDResource.Construct(valueData);
-            if (!(valueResource as any).isValue)
+            if (!(valueResource as any).isQuantity)
                 throw new Error(`property not a Value Resource`);
-            return valueResource as Value;
+            return valueResource as Quantity;
         } catch(error){
             const msg = `SimpleLightBase.Intensity | ${error}`;
             throw new Error(msg);
