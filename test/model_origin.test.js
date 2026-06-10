@@ -64,9 +64,9 @@ describe('model_origin_bgcolor', function() {
     it('with a defined background color', function(){
         const  backgroundColor = scene.BackgroundColor;
         expect(backgroundColor).to.exist;
-        expect(backgroundColor.red).to.equal(255);
-        expect(backgroundColor.green).to.equal(0);
-        expect(backgroundColor.blue).to.equal(254);
+        expect(backgroundColor.red).to.equal(153);
+        expect(backgroundColor.green).to.equal(204);
+        expect(backgroundColor.blue).to.equal(255);
     });
 });
 
