@@ -21,6 +21,17 @@ export class ManifestResource extends JSONLDResource {
     this.options = <IManifestoOptions>options;
   }
 
+  /**
+    returns Behavior as an array of string values
+    returns empty array if "behavor" property not present in the JSON file.
+  **/
+  get Behavior():string[] {
+    let rawBehavior = this.ResourceProperty("behavior");
+    if (Array.isArray(rawBehavior) || rawBehavior == null )
+        return [] as string[];
+    else
+        return [rawBehavior as string];
+  }
 /* 
   getIIIFResourceType(): IIIFResourceType {
     return <IIIFResourceType>Utils.normaliseType(this.getProperty("type"));
