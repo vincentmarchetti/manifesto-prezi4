@@ -1,5 +1,4 @@
 import {
-  Behavior,
   ViewingDirection,
   ViewingHint,
 } from "@iiif/vocabulary/dist-commonjs/index.js";
@@ -112,23 +111,6 @@ getTotalManifests(): number {
     return ViewingDirection.LEFT_TO_RIGHT;
   }
 
-  /**
-   * Note: this only will return the first behavior as per the manifesto convention
-   * IIIF v3 supports multiple behaviors
-   */
-  getBehavior(): Behavior | null {
-    let behavior: any = this.getProperty("behavior");
-
-    if (Array.isArray(behavior)) {
-      behavior = behavior[0];
-    }
-
-    if (behavior) {
-      return behavior;
-    }
-
-    return null;
-  }
 
   getViewingHint(): ViewingHint | null {
     return this.getProperty("viewingHint");

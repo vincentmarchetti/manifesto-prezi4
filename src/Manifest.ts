@@ -1,6 +1,5 @@
 import {
   ViewingHint,
-  Behavior,
   ViewingDirection,
   ServiceProfile,
 } from "@iiif/vocabulary/dist-commonjs/index.js";
@@ -76,19 +75,6 @@ export class Manifest extends IIIFResource {
     
   }
 
-  getBehavior(): Behavior | null {
-    let behavior: any = this.getProperty("behavior");
-
-    if (Array.isArray(behavior)) {
-      behavior = behavior[0];
-    }
-
-    if (behavior) {
-      return behavior;
-    }
-
-    return null;
-  }
 
   /* 
 public getDefaultTree(): TreeNode {
@@ -286,21 +272,7 @@ getRangeById(id: string): Range | null {
  */
 
 
-  isPagingEnabled(): boolean {
-    const viewingHint: ViewingHint | null = this.getViewingHint();
-
-    if (viewingHint) {
-      return viewingHint === ViewingHint.PAGED;
-    }
-
-    const behavior: Behavior | null = this.getBehavior();
-
-    if (behavior) {
-      return behavior === Behavior.PAGED;
-    }
-
-    return false;
-  }
+  
 
   getViewingDirection(): ViewingDirection | null {
     return this.getProperty("viewingDirection");
