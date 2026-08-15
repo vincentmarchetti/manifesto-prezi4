@@ -27,10 +27,12 @@ export class ManifestResource extends JSONLDResource {
   **/
   get Behavior():string[] {
     let rawBehavior = this.ResourceProperty("behavior");
-    if (Array.isArray(rawBehavior) || rawBehavior == null )
+    if (rawBehavior == null)
         return [] as string[];
+    else if (Array.isArray(rawBehavior))
+        return rawBehavior as string[];
     else
-        return [rawBehavior as string];
+        return [rawBehavior.toString() ];
   }
 /* 
   getIIIFResourceType(): IIIFResourceType {
