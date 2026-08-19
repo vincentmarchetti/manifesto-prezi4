@@ -58,4 +58,33 @@ export class Scene extends ManifestResource {
         throw new Error(msg);
     }
   }
+  
+    get Annotations() : AnnotationPage[] {
+    try{
+        const itemsProp : unknown = this.ResourceProperty("annotations");
+        const resourceItems:IResource[] | null = ResourceOps.cast_to_array( itemsProp );
+        
+        if (resourceItems == null ){
+            const msg = `Scene.Annotations| invalid value`;
+            throw new Error(msg);
+        }
+        return resourceItems.map( (item:IResource, index:number):AnnotationPage => {
+            try{
+                const resource:JSONLDResource = JSONLDResource.Construct( item, this.options);
+                if (!["AnnotationPage"].includes( resource.ResourceType)) 
+                    throw new Error("not AnnotationPage");
+                return resource as AnnotationPage;
+            }
+            catch (error){
+                const msg = 'map at element ${index} | ${error}';
+                throw new Error(msg);
+            }
+        });
+    }
+    catch (error){
+        const msg = `Scene.Annotations | ${error}`;
+        throw new Error(msg);
+    }
+  }
+
 }   

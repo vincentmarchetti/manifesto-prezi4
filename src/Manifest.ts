@@ -5,6 +5,7 @@ import {
 } from "@iiif/vocabulary/dist-commonjs/index.js";
 import {
   Annotation,
+  AnnotationPage,
   IManifestoOptions,
   IIIFResource,
   IResource,
@@ -282,7 +283,33 @@ getRangeById(id: string): Range | null {
     return this.getProperty("viewingHint");
   }
 
-
+    get Annotations() : AnnotationPage[] {
+    try{
+        const itemsProp : unknown = this.ResourceProperty("annotations");
+        const resourceItems:IResource[] | null = ResourceOps.cast_to_array( itemsProp );
+        
+        if (resourceItems == null ){
+            const msg = `Manifest.Annotations| invalid value`;
+            throw new Error(msg);
+        }
+        return resourceItems.map( (item:IResource, index:number):AnnotationPage => {
+            try{
+                const resource:JSONLDResource = JSONLDResource.Construct( item, this.options);
+                if (!["AnnotationPage"].includes( resource.ResourceType)) 
+                    throw new Error("not AnnotationPage");
+                return resource as AnnotationPage;
+            }
+            catch (error){
+                const msg = 'map at element ${index} | ${error}';
+                throw new Error(msg);
+            }
+        });
+    }
+    catch (error){
+        const msg = `Manifest.Annotations | ${error}`;
+        throw new Error(msg);
+    }
+  }
 
   findAnnotationById( anno_id:string ):Annotation|null {
     const anno_data = find_annotation_in_manifest( anno_id, this.__jsonld);
