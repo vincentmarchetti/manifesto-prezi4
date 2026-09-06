@@ -26,8 +26,8 @@ abstract class SimpleLightBase extends LightBase{
         const cssTerm: unknown = this.ResourceProperty("color");
         
         try{
-            if (typeof cssTerm == null)
-                return {red:255, green:255, blue:255 };
+            if (cssTerm == null)
+                return new Color(255,255,255);
                 
             if (typeof cssTerm == 'string') 
                 return Color.fromCSS(cssTerm);
